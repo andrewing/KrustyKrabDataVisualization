@@ -13,23 +13,16 @@
         }
         
         body {
+            justify-content: center;
+            align-items: center;
             background: url(resources/trial.gif);
             background-repeat: round;
         }
         
-        .logInBox {
-/*            background-image: url(src/mainbackground.jpg);*/
+        .logIn {
             position: absolute;
-            justify-content: center;
-            align-items: center;
-            border-radius: 5px;
-            width: 300px;
-            height: 300px;
             top: 150px;
             left: 500px;
-        }
-
-        .logIn {
             color: black;
             text-align: center;
             border: 3px;
@@ -39,13 +32,13 @@
             height: 300px;
         }
         
-        .logInBox p, h1 {
+        .logIn p, h1 {
             color: darkblue;
             font-family: sponge;
             padding-top: 5px;
         }
         
-        .logInBox p {
+        .logIn p {
             font-size: 15px;
         }
         
@@ -96,18 +89,15 @@
     </style>
     
     <body>
-        <div class="logInBox">
-            <form class= "logIn">
-                <h1>Log In</h1>
-                <p>Username: </p>
-                <input type= "text" name="username">
-                <p>Password: </p>
-                <input type= "password" name="password">
-                <br><br>
-                <input type="button" value="Log In">
-            </form>
-            
-        </div>
+        <form class= "logIn">
+            <h1>Log In</h1>
+            <p>Username: </p>
+            <input type= "text" name="username">
+            <p>Password: </p>
+            <input type= "password" name="password">
+            <br><br>
+            <input type="button" value="Log In">
+        </form>
     </body>
     
 </html>
