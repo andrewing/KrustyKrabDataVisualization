@@ -1,0 +1,80 @@
+<html>
+    
+    <head>
+        
+        <style>
+            
+             body {
+                display: block;
+                margin: 0px;
+                padding: 0px;
+                border: 0px;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            
+            .navigation {
+                width: 100%;
+                height: 100px;
+                background-color: black; 
+            }
+            
+            
+            .categories {
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                width: 100%;
+                height: 620px;
+                background: url(src/mainbackground.jpg);
+                    
+            }
+            
+            .categ {
+                height: 620px;
+                width: 200px;
+                margin-left: 7px;
+                border-radius: 5px;
+            }
+            
+            .categ:hover {
+                opacity: 0.8;
+            }
+            
+            #categ1 {
+                background-image: url(src/categ1.jpg);
+            }
+            
+            #categ2 {
+                background-image: url(src/categ2.jpg);
+            }
+            #categ3 {
+                background-image: url(src/categ3.jpg);
+            }
+            #categ4 {
+                background-image: url(src/categ4.png);
+            }
+            
+            
+        </style>
+        
+        
+    </head>
+        
+    <body>
+        <div class="navigation"></div>    
+        
+        <div class="categories" >
+            <div class="categ" id="categ1"></div>
+            <div class="categ" id="categ2"></div>
+            <div class="categ" id="categ3"></div>
+            <div class="categ" id="categ4"></div>
+        </div>
+        
+        
+    </body>
+    
+    
+
+</html>

@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>Krusty Krab</title>
+        <link rel= "shortcut icon" type="image/png" href="src/logo.png">
+    </head>
+    
+    
+    <style>
+        
+        @font-face {
+            font-family: sponge;
+            src: url(src/spongefont.ttf);
+        }
+        
+        body {
+            background-image: url(src/trial.jpg);
+            background-repeat: round;
+        }
+        
+        .logInBox {
+/*            background-image: url(src/mainbackground.jpg);*/
+            position: absolute;
+            border-radius: 5px;
+            width: 300px;
+            height: 300px;
+            top: 150px;
+            left: 500px;
+        }
+
+        .logIn {
+            color: black;
+            text-align: center;
+            border: 3px;
+            border-style: solid;
+            border-color: darkblue;
+            width: 300px;
+            height: 300px;
+        }
+        
+        .logInBox p, h1 {
+            color: darkblue;
+            font-family: sponge;
+        }
+        
+        input[type = text], input[type = password] {
+            width: 200px;
+            height: 20px;
+            border-width: 2px;
+            border-radius: 3px;
+            border-style: solid;
+            border-bottom-color: darkblue;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            background: none;
+            
+             
+        }
+        
+    </style>
+    
+    <body> 
+        <div class="logInBox">
+            <form class= "logIn">
+                <h1>Log In</h1>
+                <p>Username: </p>
+                <input type= "text" name="username">
+                <p>Password: </p>
+                <input type= "password" name="password" >
+                
+            </form>
+            
+        </div>
+    </body>
+    
+</html>
