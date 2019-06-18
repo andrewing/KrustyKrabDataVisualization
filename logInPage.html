@@ -20,6 +20,8 @@
         .logInBox {
 /*            background-image: url(src/mainbackground.jpg);*/
             position: absolute;
+            justify-content: center;
+            align-items: center;
             border-radius: 5px;
             width: 300px;
             height: 300px;
@@ -40,6 +42,11 @@
         .logInBox p, h1 {
             color: darkblue;
             font-family: sponge;
+            padding-top: 5px;
+        }
+        
+        .logInBox p {
+            font-size: 15px;
         }
         
         input[type = text], input[type = password] {
@@ -53,9 +60,33 @@
             border-left: none;
             border-right: none;
             background: none;
-            
-             
+            font-family: sponge;
+            font-size: 15px;
+            color: darkblue;
+            outline: none;
+        
         }
+        
+        input[type=button] {
+            background: none; 
+            color: darkblue;
+            font-family: sponge;
+            font-size: 15px;
+            border-style: solid;
+            border-color: darkblue;
+        }
+        
+        input[type=button]:hover {
+            box-shadow: 2px 2px 1px rgb(10,10,10,0.7);    
+        }
+        
+        input[type=button]:active {
+            box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+        }
+        
+        
+        
         
     </style>
     
@@ -66,8 +97,9 @@
                 <p>Username: </p>
                 <input type= "text" name="username">
                 <p>Password: </p>
-                <input type= "password" name="password" >
-                
+                <input type= "password" name="password">
+                <br><br>
+                <input type="button" value="Log In">
             </form>
             
         </div>
