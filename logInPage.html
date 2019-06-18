@@ -13,7 +13,7 @@
         }
         
         body {
-            background-image: url(resources/bgGIF.gif);
+            background: url(resources/trial.gif);
             background-repeat: round;
         }
         
@@ -50,7 +50,8 @@
         }
         
         input[type = text], input[type = password] {
-            width: 200px;
+            text-align: center; 
+            width: 125px;
             height: 20px;
             border-width: 2px;
             border-radius: 3px;
@@ -64,7 +65,11 @@
             font-size: 15px;
             color: darkblue;
             outline: none;
+            transition: ease-in-out, width .35s ease-in-out;
         
+        }
+        input[type = text]:focus, input[type = password]:focus {
+            width: 200px;
         }
         
         input[type=button] {
