@@ -1,0 +1,124 @@
+<html>
+    
+    <head>
+        <title>Krusty Krab</title>
+        <link rel= "shortcut icon" type="image/png" href="resources/logo.png">
+        <style>
+            
+            @font-face {
+                font-family: sponge;
+                src: url(resources/spongefont.ttf);
+            }
+            
+            body {
+                margin: 0px;
+                padding: 0px;
+                background-image: none;
+                background-repeat: round;
+                background-image: url(resources/trial.gif);
+                background-repeat: round;
+            }
+
+            .menu-bar, #menu-barID {
+              position: absolute;
+              left: -205px;
+              width: 200px;
+              height: 100%;
+              background-color: rgba(255,255,255, 0.4);
+              text-align: center;
+              transition: 0.8s ease;
+              border: solid 2px darkblue;
+              
+
+            }
+
+            .menu-bar > .menu-list{
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .menu-item, .menu-item a {
+                text-align: center;
+                justify-content: center;
+                display: flex;
+                text-decoration: none;
+                color: darkblue;
+                font-family: sponge;
+                padding: 10px;
+                font-size: 15pt;
+                flex: 1;
+            }
+
+            .menu-item:hover, .menu-item a:hover {
+                color: white;
+                
+            }
+
+
+            h1 {
+                font-family: sponge;
+                font-size: 20pt;
+                color: white;
+            }
+            .menu-btn {
+                float: right;
+                margin-right: -3em;
+                margin-top: 250px;
+                content: "";
+                outline: inherit;
+                border: 0px;
+                background:transparent;
+            }
+
+            #menu-iconID {
+                content:  url(resources/show.png);
+            }
+
+
+        </style>
+        
+        
+    </head>
+        
+    <body>
+        <nav class="menu-bar" id="menu-barID">
+            <button type="button" onclick="toggle()" class="menu-btn">
+                <span class="menu-icon" id="menu-iconID"></span>
+            </button>
+        
+            <ul class="menu-list">
+                <br>
+                <h1>Krusty Stats</h1>
+                <li class="menu-item"><a href="#">About Us</a></li>
+                <li class="menu-item"><a href="#">Account</a></li>
+            </ul>
+        </nav>
+
+
+        <script>
+            function toggle() {
+
+                var elem = document.getElementById("menu-barID"),
+                    style = window.getComputedStyle(elem),
+                    left = style.getPropertyValue("left");
+
+                var btn = document.getElementById("menu-iconID"),
+                style = window.getComputedStyle(btn),
+                content = style.getPropertyValue("content");
+                
+                if(left == "0px") {
+                    elem.style.left = "-205px";
+                    btn.style.content = "url(resources/show.png)";
+
+                }else {
+                    elem.style.left = "0px";
+                    btn.style.content = "url(resources/hide.png)";
+                }
+    
+            }
+        </script>
+
+    </body>
+
+</html>

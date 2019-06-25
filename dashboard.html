@@ -1,8 +1,14 @@
 <html>
     
     <head>
-        
+        <title>Krusty Krab</title>
+        <link rel= "shortcut icon" type="image/png" href="resources/logo.png">
         <style>
+            
+            @font-face {
+                font-family: sponge;
+                src: url(resources/spongefont.ttf);
+            }
             
              body {
                 display: block;
@@ -11,58 +17,125 @@
                 border: 0px;
                 justify-content: center;
                 align-items: center;
+                background-image: url(resources/trial.gif);
+
+                background-repeat: round;
             }
             
-            .navigation {
+            
+            .navbar {
+                display: inline-block;
+                text-align: right;
                 width: 100%;
-                height: 100px;
-                background-color: black; 
+                height: 90px;
+                background: linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.2)), url(resources/bamblue.jpg);
+                border-radius: 5px;
             }
             
-            .categories {
+            .navlist {
+                display: inline-block;
+                color: white;
+                font-family: sponge;
+                font-size: 25px;
+                list-style: none;
+                padding: 35px;
+                line-height: 20px;
+            }
+
+            .navlist:hover {
+                color: darkblue;
+            }
+                        
+            .categbars {
                 display: flex;
                 align-content: center;
                 justify-content: center;
                 width: 100%;
-                height: 620px;
-                background: url(src/mainbackground.jpg);
-                    
+                height: 500px;
             }
             
             .categ {
-                height: 620px;
+                display: flex;
+                height: 500px;
                 width: 200px;
-                margin-left: 7px;
+                margin-left: 10px;
                 border-radius: 5px;
+                background: none;
+                border-style: solid;
+                border-color: darkblue;
             }
             
             .categ:hover {
-                opacity: 0.8;
+                transform: perspective(1px) translateZ(0);
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+                transition-duration: 0.3s;
+                transition-duration: 0.3s;
+                transition-property: box-shadow;
+                transition-property: box-shadow;
             }
             
-            #categ1 {
-                background-image: url(resources/categ1.jpg);
+            .categ:hover, .categ:active, .categ:focus{
+                box-shadow: 0 0 8px rgba(0, 0, 0, 1);
+                background: rgba(255,255,255, 0.5);
             }
             
-            #categ2 {
-                background-image: url(resources/categ2.jpg);
+            .lblbar {
+                display: block;
+                background: url(resources/bamblue.jpg);
+                width: 200px;
+                height: 50px;
+                margin-top: 250px;
+                text-align: end;
+                line-height: 50px;
+                border-style: solid;
+                border-color: white;
+                border-right-color: darkblue;
+                border-left-color: darkblue;
             }
-            #categ3 {
-                background-image: url(resources/categ3.jpg);
+
+            
+            #lbltxt {
+                margin: 20px;
+                font-family: sponge;
+                color: white;
+                font-size: 20px;
             }
-            #categ4 {
-                background-image: url(resources/categ4.png);
-            }
+            
         </style>
     </head>
         
     <body>
-        <div class="navigation"></div>    
-        <div class="categories" >
-            <div class="categ" id="categ1"></div>
-            <div class="categ" id="categ2"></div>
-            <div class="categ" id="categ3"></div>
-            <div class="categ" id="categ4"></div>
+
+        <div class="navbar">
+            <li class="navlist">About Us</li>
+            <li class="navlist">Account</li>
+        </div>    
+        
+        <div class="categbars">
+            <div class="categ" id="categ1">
+                <div class="lblbar">
+                    <span id="lbltxt">View All</span>
+                    <div class="icon"></div>
+                </div>
+            </div>
+            
+            <div class="categ" id="categ2">
+                <div class="lblbar">
+                    <span id="lbltxt">Burgers</span>
+                </div>
+            </div>
+            
+            <div class="categ" id="categ3">
+                <div class="lblbar">
+                    <span id="lbltxt">Species</span>
+                </div>
+            </div>
+            
+            <div class="categ" id="categ4">
+                <div class="lblbar">
+                    <span id="lbltxt">Upload</span>
+                </div>
+            </div>
         </div>
     </body>
 </html>
