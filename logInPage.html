@@ -1,5 +1,7 @@
 <html>
     <head>
+        <script src="libraries/jquery.js"></script>
+        <script src="login.js"></script>
         <title>Krusty Krab</title>
         <link rel= "shortcut icon" type="image/png" href="resources/logo.png">
     </head>
@@ -58,7 +60,7 @@
             font-size: 15px;
             color: darkblue;
             outline: none;
-            transition: ease-in-out, width .35s ease-in-out;
+            transition: ease-in-out, width .25s ease-in-out;
         
         }
         input[type = text]:focus, input[type = password]:focus {
@@ -87,16 +89,16 @@
         
         
     </style>
-    
+
     <body>
-        <form class= "logIn">
+        <form autocomplete="off" class="logIn" id="logInForm" method="post">
             <h1>Log In</h1>
             <p>Username: </p>
-            <input type= "text" name="username">
+            <input type= "text" id="username">
             <p>Password: </p>
-            <input type= "password" name="password">
+            <input type= "password" id="password">
             <br><br>
-            <input type="button" value="Log In">
+            <input type="button" value="Log In" id="logInButton">
         </form>
     </body>
     
