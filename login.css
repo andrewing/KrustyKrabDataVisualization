@@ -1,0 +1,77 @@
+
+@font-face {
+    font-family: sponge;
+    src: url(resources/spongefont.ttf);
+}
+
+body {
+    justify-content: center;
+    align-items: center;
+    background: url(resources/trial.gif);
+    background-repeat: round;
+}
+
+.logIn {
+    position: absolute;
+    top: 150px;
+    left: 500px;
+    color: black;
+    text-align: center;
+    border: 3px;
+    border-style: solid;
+    border-color: darkblue;
+    width: 300px;
+    height: 300px;
+}
+
+.logIn p, h1 {
+    color: darkblue;
+    font-family: sponge;
+    padding-top: 5px;
+}
+
+.logIn p {
+    font-size: 15px;
+}
+
+input[type = text], input[type = password] {
+    text-align: center; 
+    width: 125px;
+    height: 20px;
+    border-width: 2px;
+    border-radius: 3px;
+    border-style: solid;
+    border-bottom-color: darkblue;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: none;
+    font-family: sponge;
+    font-size: 15px;
+    color: darkblue;
+    outline: none;
+    transition: ease-in-out, width .25s ease-in-out;
+
+}
+input[type = text]:focus, input[type = password]:focus {
+    width: 200px;
+}
+
+
+input[type=button] {
+    background: none; 
+    color: darkblue;
+    font-family: sponge;
+    font-size: 15px;
+    border-style: solid;
+    border-color: darkblue;
+}
+
+input[type=button]:hover {
+    box-shadow: 2px 2px 1px rgb(10,10,10,0.7);    
+}
+
+input[type=button]:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+        inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
