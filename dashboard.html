@@ -18,30 +18,36 @@
                 justify-content: center;
                 align-items: center;
                 background-image: url(resources/trial.gif);
+
                 background-repeat: round;
             }
             
             
-            .navigation {
+            .navbar {
+                display: inline-block;
+                text-align: right;
                 width: 100%;
-                height: 100px;
-                background-color: rgba(255,255,255, 0.5);
+                height: 90px;
+                background: linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.2)), url(resources/bamblue.jpg);
+                border-radius: 5px;
             }
             
             .navlist {
                 display: inline-block;
-                color: darkblue;
+                color: white;
                 font-family: sponge;
                 font-size: 25px;
                 list-style: none;
-                margin-left: 10px;
-                margin-top: 20px;
-                padding-top: 10px;
-                padding: 20px;
+                padding: 35px;
+                line-height: 20px;
+            }
+
+            .navlist:hover {
+                color: darkblue;
             }
             
             
-            .categories {
+            .categbars {
                 display: flex;
                 align-content: center;
                 justify-content: center;
@@ -74,7 +80,7 @@
                 background: rgba(255,255,255, 0.5);
             }
             
-            .label {
+            .lblbar {
                 display: block;
                 background: url(resources/bamblue.jpg);
                 width: 200px;
@@ -84,9 +90,11 @@
                 line-height: 50px;
                 border-style: solid;
                 border-color: white;
+                border-right-color: darkblue;
+                border-left-color: darkblue;
             }
             
-            #txt {
+            #lbltxt {
                 margin: 20px;
                 font-family: sponge;
                 color: white;
@@ -99,35 +107,34 @@
     </head>
         
     <body>
-        <div class="navigation">
-            <li class="navlist">Home</li>
+        <div class="navbar">
             <li class="navlist">About Us</li>
             <li class="navlist">Account</li>
         </div>    
         
-        <div class="categories">
+        <div class="categbars">
             <div class="categ" id="categ1">
-                <div class="label">
-                    <span id="txt">View All</span>
+                <div class="lblbar">
+                    <span id="lbltxt">View All</span>
                     <div class="icon"></div>
                 </div>
             </div>
             
             <div class="categ" id="categ2">
-                <div class="label">
-                    <span id="txt">Burgers</span>
+                <div class="lblbar">
+                    <span id="lbltxt">Burgers</span>
                 </div>
             </div>
             
             <div class="categ" id="categ3">
-                <div class="label">
-                    <span id="txt">Species</span>
+                <div class="lblbar">
+                    <span id="lbltxt">Species</span>
                 </div>
             </div>
             
             <div class="categ" id="categ4">
-                <div class="label">
-                    <span id="txt">Upload</span>
+                <div class="lblbar">
+                    <span id="lbltxt">Upload</span>
                 </div>
             </div>
         </div>
