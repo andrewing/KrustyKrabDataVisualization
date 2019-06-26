@@ -4,7 +4,6 @@
         <title>Krusty Krab</title>
         <link rel= "shortcut icon" type="image/png" href="resources/logo.png">
         <script src="libraries/jquery.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel=stylesheet href="dashboard.css">
 
     </head>
@@ -18,18 +17,20 @@
             <ul class="menu-list">
                 <br>
                 <h1>Krusty Stats</h1>
-                <li class="menu-item"><a href="#">View All Data</a></li>
-                <li class="menu-item"><a href="#">View By Date</a></li>
-                <li class="menu-item"><a href="#">View by Burger</a></li>
-                <li class="menu-item"><a href="#">View by Species</a></li>
+                <li class="menu-item"><a href="#viewAll">View All Data</a></li>
+                <li class="menu-item"><a href="#viewbyDate">View By Date</a></li>
+                <li class="menu-item"><a href="#viewbyBurger">View by Burger</a></li>
+                <li class="menu-item"><a href="#viewbySpecies">View by Species</a></li>
                 <li class="menu-item"><a href="#">Log Out</a></li>
             </ul>
         </nav>
 
-        <div class= "headerContainer" id="tableCtnr">
-            <span>All Data</span>
-        </div>    
-
+        <!-- VIEW ALL DATA -->
+        <div id="viewAll" >
+            <div class= "headerContainer">
+                <span>All Data</span>
+            </div>    
+        
             <div class="scrolldiv">
                 <table class = "data_table" id="data_tableID">
                     <thead>
@@ -44,10 +45,36 @@
                     </tbody>
                 </table>
             </div>
+        </div>
 
+        <br>
 
+        <!-- VIEW BY DATE -->
+        <div id="viewbyDate">
+            <div class= "headerContainer">
+                    <span>View By Date</span>
+            </div>  
+            <div class="stats"></div>
+        </div>
+
+        <!-- VIEW BY BURGER -->
+        <div id="viewbyBurger">
+            <div class= "headerContainer">
+                    <span>View By Burger</span>
+            </div>  
+            <div class="stats"></div>
+        </div>
+
+        <!-- VIEW BY SPECIES -->
+        <div id="viewbySpecies">
+            <div class= "headerContainer">
+                    <span>View By Species</span>
+            </div>  
+            <div class="stats"></div>
+        </div>
 
         <script src="dashboard.js"></script>
+        
     
     </body>
 </html>

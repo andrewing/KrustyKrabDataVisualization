@@ -11,33 +11,41 @@ $(document).ready(function(){
         });
 
         $("#tblbody").append(krusty_data);
+    });
+
+    // scroll animation
+    $(document).on('click', 'a[href^="#"]', function (event) {
+        event.preventDefault();
+    
+        $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top
+        }, 600);
 
     });
+
+    //link lights up when in that page
+
+    let mainNavLinks = document.querySelectorAll(".menu-item a");
+    window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach(link => {
+        let section = document.querySelector(link.hash);
+
+            if (
+            section.offsetTop <= fromTop &&
+            section.offsetTop + section.offsetHeight > fromTop+2
+            ) {
+            link.classList.add("currentpage");
+            } else {
+            link.classList.remove("currentpage");
+            }
+        });
+    });
+    
 });
 
-
 function toggle() {
-
-    var elem = document.getElementById("menu-barID"),
-        style = window.getComputedStyle(elem),
-        left = style.getPropertyValue("left");
-
-    var btn = document.getElementById("menu-iconID"),
-        style = window.getComputedStyle(btn),
-        content = style.getPropertyValue("content");
-
-    var table = document.getElementById("tableCtnr"),
-        style = window.getComputedStyle(table),
-        marginleft = style.getPropertyValue("margin-left");
-    
-    if(left == "0px") {
-        elem.style.left = "-205px";
-        btn.style.content = "url(resources/show.png)";
-        //table.style.marginLeft = "40px";
-
-    }else {
-        elem.style.left = "0px";
-        btn.style.content = "url(resources/hide.png)";
-        //table.style.marginLeft = "250px";
-    }
+    document.getElementById("menu-barID").classList.toggle('active');
+    document.getElementById("menu-iconID").classList.toggle('active');
 }

@@ -8,22 +8,25 @@ body, html {
     padding: 0px;
     background-image: none;
     background-repeat: round;
-    background-image: url(resources/trial.gif);
+    /* background-image: url(resources/sand.jpg); */
     /*  background-repeat: round; */
     height: 100%;
+    display: block;
 }
 
 .menu-bar, #menu-barID {
-  position: absolute;
+  position: fixed;
   left: -205px;
   width: 200px;
   height: 100%;
-  background-color: rgba(255,255,255, 0.4);
+  background-color: rgba(255,255,255, 0.2);
   text-align: center;
   transition: 0.8s ease;
   border: solid 2px darkblue;
-  
+}
 
+#menu-barID.active {
+    left: 0px;
 }
 
 .menu-bar > .menu-list{
@@ -37,7 +40,7 @@ body, html {
     justify-content: center;
     display: flex;
     text-decoration: none;
-    color: darkblue;
+    color:  darkblue;
     font-family: sponge;
     padding: 10px;
     font-size: 15pt;
@@ -45,14 +48,18 @@ body, html {
 }
 
 .menu-item:hover, .menu-item a:hover {
-    color: white;
-    
+    color: rgba(255, 255, 255, 0.877);
 }
+
+a.currentpage {
+    color: white;
+}
+
 
 .menu-list h1 {
     font-family: sponge;
     font-size: 20pt;
-    color: white;
+    color: black;
 }
 .menu-btn {
     float: right;
@@ -68,25 +75,45 @@ body, html {
     content:  url(resources/show.png);
 }
 
+#menu-iconID:hover {
+    content:url(resources/show-hover.png);
+}
+
+#menu-iconID.active {
+    content: url(resources/hide.png);
+}
+
+#menu-iconID.active:hover {
+    content: url(resources/hide-hover.png);
+}
+
 .headerContainer span{
     font-size: 20pt;
     font-family: sponge;
     text-align: center;
-    color: white;
-    margin-left: 610px;
+    color: yellow;
+    margin-left: 609px;
+}
+
+/* View All Data */
+
+#viewAll {
+    border: 1px solid white;
+    background-color: #88c7a6;
 }
 
 .scrolldiv {
-    display: inline-block;
-    position: absolute;
+    display: block;
+    position: relative;
     background-color:  rgba(255,255,255, 0.4);
     text-align: center;
     color: white;
     width: 800px;
-    height: 529px;
+    height: 538px;
     margin-left: 250px;
     overflow: hidden;
     overflow-y: scroll;
+    border: 2px solid white;
 }
 
 .data_table {
@@ -94,13 +121,14 @@ body, html {
     font-size: 12px;
     width: 100%;
     color: darkblue;
-    border: solid 2px;
+    border: solid 2px white;
     border-collapse: collapse;
-    border-color: white;
 }
 
-.data_table thead {
-    
+.data_table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 th {
@@ -118,7 +146,54 @@ td,th {
 }
 
 tr:nth-child(even) {
-    /* background-color: rgb(103, 194, 224); */
-    background: url(resources/categ4.png);
-    color: white;
+    background-color: rgb(103, 194, 224);
+    color: whitesmoke;
   }
+
+/* View By Date */
+
+#viewbyDate {
+    border: 1px solid white;
+    background-color: rgb(82, 170, 158);
+}
+
+.stats {
+    position: relative;
+    width: 800px;
+    height: 538px;
+    margin-left: 250px;
+    background-color: rgba(255,255,255, 0.4);
+    border: solid 2px white;
+}
+
+/* View By Burger */
+
+#viewbyBurger {
+    border: 1px solid white;
+    background-color:  rgb(103, 194, 224);
+}
+
+.stats {
+    position: relative;
+    width: 800px;
+    height: 538px;
+    margin-left: 250px;
+    background-color: rgba(255,255,255, 0.4);
+    border: solid 2px white;
+}
+
+/* View By Species */
+
+#viewbySpecies {
+    border: 1px solid white;
+    background-color: #2884cf;
+}
+
+.stats {
+    position: relative;
+    width: 800px;
+    height: 538px;
+    margin-left: 250px;
+    background-color: rgba(255,255,255, 0.4);
+    border: solid 2px white;
+}
