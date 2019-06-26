@@ -18,13 +18,18 @@ $(document).ready(function(){
         event.preventDefault();
     
         $('html, body').animate({
-            scrollTop: $($.attr(this, 'href')).offset().top
+            scrollTop: $($.attr(this, 'href')).offset().top+2
         }, 600);
 
     });
 
-    //link lights up when in that page
+    //lights up when clicked
+    $('ul li a').click(function(){
+        $('li a').removeClass("currentpage");
+        $(this).addClass("currentpage");
+      });
 
+    //link lights up when in that page
     let mainNavLinks = document.querySelectorAll(".menu-item a");
     window.addEventListener("scroll", event => {
     let fromTop = window.scrollY;
@@ -32,16 +37,16 @@ $(document).ready(function(){
     mainNavLinks.forEach(link => {
         let section = document.querySelector(link.hash);
 
-            if (
-            section.offsetTop <= fromTop &&
-            section.offsetTop + section.offsetHeight > fromTop+2
-            ) {
+            if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop){
             link.classList.add("currentpage");
             } else {
             link.classList.remove("currentpage");
             }
         });
     });
+
+    
+    
     
 });
 
