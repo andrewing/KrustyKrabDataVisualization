@@ -1,0 +1,124 @@
+@font-face {
+    font-family: sponge;
+    src: url(resources/spongefont.ttf);
+}
+
+body, html {
+    margin: 0px;
+    padding: 0px;
+    background-image: none;
+    background-repeat: round;
+    background-image: url(resources/trial.gif);
+    /*  background-repeat: round; */
+    height: 100%;
+}
+
+.menu-bar, #menu-barID {
+  position: absolute;
+  left: -205px;
+  width: 200px;
+  height: 100%;
+  background-color: rgba(255,255,255, 0.4);
+  text-align: center;
+  transition: 0.8s ease;
+  border: solid 2px darkblue;
+  
+
+}
+
+.menu-bar > .menu-list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item, .menu-item a {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    text-decoration: none;
+    color: darkblue;
+    font-family: sponge;
+    padding: 10px;
+    font-size: 15pt;
+    flex: 1;
+}
+
+.menu-item:hover, .menu-item a:hover {
+    color: white;
+    
+}
+
+.menu-list h1 {
+    font-family: sponge;
+    font-size: 20pt;
+    color: white;
+}
+.menu-btn {
+    float: right;
+    margin-right: -3em;
+    margin-top: 250px;
+    content: "";
+    outline: inherit;
+    border: 0px;
+    background:transparent;
+}
+
+#menu-iconID {
+    content:  url(resources/show.png);
+}
+
+.headerContainer span{
+    font-size: 20pt;
+    font-family: sponge;
+    text-align: center;
+    color: white;
+    margin-left: 610px;
+}
+
+.scrolldiv {
+    display: inline-block;
+    position: absolute;
+    background-color:  rgba(255,255,255, 0.4);
+    text-align: center;
+    color: white;
+    width: 800px;
+    height: 529px;
+    margin-left: 250px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.data_table {
+    font-family: sponge;
+    font-size: 12px;
+    width: 100%;
+    color: darkblue;
+    border: solid 2px;
+    border-collapse: collapse;
+    border-color: white;
+}
+
+.data_table thead {
+    
+}
+
+th {
+    color: white;
+    background: url(resources/categ1.jpg);
+}
+
+td,th {
+    font-family: sponge;
+    font-size: 12pt;
+    border-collapse: collapse;
+    border: solid 2px;
+    border-color: white;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    /* background-color: rgb(103, 194, 224); */
+    background: url(resources/categ4.png);
+    color: white;
+  }
