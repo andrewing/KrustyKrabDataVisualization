@@ -1,53 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Krusty Krab</title>
-        <link rel= "shortcut icon" type="image/png" href="resources/logo.png">
-        <script src="libraries/jquery.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel=stylesheet href="dashboard.css">
 
-    </head>
-        
-    <body>
-        <nav class="menu-bar" id="menu-barID">
-            <button type="button" onclick="toggle()" class="menu-btn">
-                <span class="menu-icon" id="menu-iconID"></span>
-            </button>
-        
-            <ul class="menu-list">
-                <br>
-                <h1>Krusty Stats</h1>
-                <li class="menu-item"><a href="#">View All Data</a></li>
-                <li class="menu-item"><a href="#">View By Date</a></li>
-                <li class="menu-item"><a href="#">View by Burger</a></li>
-                <li class="menu-item"><a href="#">View by Species</a></li>
-                <li class="menu-item"><a href="#">Log Out</a></li>
-            </ul>
-        </nav>
+<head>
+    <title>Krusty Krab</title>
+    <link rel="shortcut icon" type="image/png" href="resources/logo.png">
+    <script src="libraries/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel=stylesheet href="css/dashboard.css">
 
-        <div class= "headerContainer" id="tableCtnr">
-            <span>All Data</span>
-        </div>    
+</head>
 
-            <div class="scrolldiv">
-                <table class = "data_table" id="data_tableID">
-                    <thead>
-                        <tr>
-                            <th>Date and Time</th>
-                            <th>Burger</th>
-                            <th>Species</th>
-                        </tr>
-                    </thead>
-    
-                    <tbody id="tblbody">
-                    </tbody>
-                </table>
-            </div>
+<body>
+    <nav class="menu-bar" id="menu-barID">
+        <button type="button" onclick="toggle()" class="menu-btn">
+            <span class="menu-icon" id="menu-iconID"></span>
+        </button>
+
+        <ul class="menu-list">
+            <br>
+            <h1>Krusty Stats</h1>
+            <li class="menu-item"><a href="#">View All Data</a></li>
+            <li class="menu-item"><a href="#">View By Date</a></li>
+            <li class="menu-item"><a href="#">View by Burger</a></li>
+            <li class="menu-item"><a href="#">View by Species</a></li>
+            <li class="menu-item"><a href="#">Log Out</a></li>
+        </ul>
+    </nav>
+
+    <div class="headerContainer" id="tableCtnr">
+        <span>All Data</span>
+    </div>
+
+    <div class="scrolldiv">
+        <table class="data_table" id="data_tableID">
+            <thead>
+                <tr>
+                    <th>Date and Time</th>
+                    <th>Burger</th>
+                    <th>Species</th>
+                </tr>
+            </thead>
+
+            <tbody id="tblbody">
+            </tbody>
+        </table>
+    </div>
 
 
 
-        <script src="dashboard.js"></script>
-    
-    </body>
+    <script src="dashboard.js"></script>
+
+</body>
+
 </html>
