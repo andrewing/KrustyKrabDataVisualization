@@ -59,6 +59,7 @@ a.currentpage {
     color: black;
 }
 .menu-btn {
+    cursor: pointer;
     float: right;
     margin-right: -3em;
     margin-top: 250px;
@@ -117,11 +118,19 @@ a.currentpage {
 }
 
 #home_stats.active {
-    margin-left: 270px;
+    margin-left: 245px;
     transition: 0.8s ease;
 }
 
+.sales_divs {
+    display: block;
+    margin: 5px;
+    border: solid 1px white;
+    background-color:#2884cf;
+}
+
 .sales_header {
+    text-align: center;
     margin: 0px;
     font-family: sponge;
     font-size: 15pt;
@@ -130,56 +139,12 @@ a.currentpage {
     border-bottom: solid 1px white;
 }
 
-.sales_divs {
-    display: block;
-    margin: 5px;
-    text-align: center;
-    border: solid 1px white;
-    background-color:#2884cf;
-}
-
 #bgrBySpcs_sales {
     position: relative;
     justify-content: center;
     width: 670px;
     height: 230px;
 }
-
-#bgr_page1 {
-    width: 100%;
-    height: 170px;
-    background-color: darkcyan;
-}
-
-.slidebtn-div {
-    text-align: center;
-    width: 100%;
-    height: 30px;
-    border-top: solid 1px white;
-    background-color: rgba(0,139,139, 0.3);
-}
-
-.slide-btn {
-    margin-left: 20px;
-    font-weight: bolder;
-    font-size: 15pt;
-    background: transparent;
-    border: 0px;
-    outline: inherit;
-    color: white;
-}
-
-.slide-btn:hover {
-    background-color: darkblue;
-}
-
-.burgerType_span {
-    margin-left: 20px;
-    font-family: sponge;
-    font-size: 15pt;
-    color: white;
-}
-
 
 #bgr_sales {
     width: 450px;
@@ -204,7 +169,7 @@ a.currentpage {
     background-color:  rgb(104, 175, 199);
 }
 
-.calendar_stats {
+.calendar_stats, #cal_stats {
     position: relative;
     /* width: 950px; */
     width: 1000px;
@@ -213,37 +178,46 @@ a.currentpage {
     background-color: rgba(255,255,255, 0.4);
     border: solid 2px white;
     margin-left: 150px;
+    transition: 0.8s ease;
 }
 
+#cal_stats.active {
+    margin-left: 250px;
+    transition: 0.8s ease;
+}
 
 /* View All Data (Table) */
 
 #viewAll {
-    background-color: rgb(68, 158, 146);
+    background-color: rgb(12, 145, 145);
     border: 1px solid white;    
 }
 
-.scrolldiv {
+.scrolldiv, #scrolldivID {
     display: block;
     position: relative;
     background-color:  rgba(255,255,255, 0.4);
     text-align: center;
     color: white;
-    /* width: 950px; */
     width: 1000px;
     height: 538px;
-    /* margin-left: 250px; */
     overflow: hidden;
     overflow-y: scroll;
     border: 2px solid white;
     margin-left: 150px;
+    transition: 0.8s ease;
+}
+
+#scrolldivID.active {
+    margin-left: 250px;
+    transition: 0.8s ease;
 }
 
 .data_table {
     font-family: sponge;
     font-size: 12px;
     width: 100%;
-    color: darkblue;
+    color: white;
     border: solid 2px white;
     border-collapse: collapse;
 }
@@ -256,7 +230,7 @@ a.currentpage {
 
 th {
     color: white;
-    background: url(resources/categ1.jpg);
+    background-color: darkblue;
 }
 
 td,th {
@@ -270,5 +244,5 @@ td,th {
 
 tr:nth-child(even) {
     background-color: rgb(103, 194, 224);
-    color: whitesmoke;
+    color: darkblue;
 }

@@ -54,4 +54,6 @@ function toggle() {
     document.getElementById("menu-barID").classList.toggle('active');
     document.getElementById("menu-iconID").classList.toggle('active');
     document.getElementById("home_stats").classList.toggle('active');
+    document.getElementById("cal_stats").classList.toggle('active');
+    document.getElementById("scrolldivID").classList.toggle('active');
 }
