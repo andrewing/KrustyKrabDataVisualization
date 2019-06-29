@@ -8,22 +8,23 @@ body, html {
     padding: 0px;
     background-image: none;
     background-repeat: round;
-    background-image: url(resources/trial.gif);
-    /*  background-repeat: round; */
     height: 100%;
+    display: block;
 }
 
 .menu-bar, #menu-barID {
-  position: absolute;
+  position: fixed;
   left: -205px;
   width: 200px;
   height: 100%;
-  background-color: rgba(255,255,255, 0.4);
+  background-color: rgba(255,255,255, 0.2);
   text-align: center;
   transition: 0.8s ease;
   border: solid 2px darkblue;
-  
+}
 
+#menu-barID.active {
+    left: 0px;
 }
 
 .menu-bar > .menu-list{
@@ -37,7 +38,7 @@ body, html {
     justify-content: center;
     display: flex;
     text-decoration: none;
-    color: darkblue;
+    color:  darkblue;
     font-family: sponge;
     padding: 10px;
     font-size: 15pt;
@@ -45,14 +46,17 @@ body, html {
 }
 
 .menu-item:hover, .menu-item a:hover {
+    color: rgba(255, 255, 255, 0.877);
+}
+
+a.currentpage {
     color: white;
-    
 }
 
 .menu-list h1 {
     font-family: sponge;
     font-size: 20pt;
-    color: white;
+    color: black;
 }
 .menu-btn {
     float: right;
@@ -68,25 +72,171 @@ body, html {
     content:  url(resources/show.png);
 }
 
+#menu-iconID:hover {
+    content:url(resources/show-hover.png);
+}
+
+#menu-iconID.active {
+    content: url(resources/hide.png);
+}
+
+#menu-iconID.active:hover {
+    content: url(resources/hide-hover.png);
+}
+
+
+/* Title of the page */
 .headerContainer span{
     font-size: 20pt;
     font-family: sponge;
     text-align: center;
+    color: yellow;
+    margin-left: 609px;
+}
+
+
+/* Home Page */
+#home {
+    border: 1px solid white;
+    background-color: #2884cf;
+}
+
+
+.home_stats, #home_stats {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    align-content: flex-start;
+    position: relative;
+    width: 1150px;
+    height: 538px;
+    background-color: rgba(255,255,255, 0.4);
+    border: solid 2px white;
+    margin-left: 65px;
+    transition: 0.8s ease;
+}
+
+#home_stats.active {
+    margin-left: 270px;
+    transition: 0.8s ease;
+}
+
+.sales_header {
+    margin: 0px;
+    font-family: sponge;
+    font-size: 15pt;
     color: white;
-    margin-left: 610px;
+    background-color: darkblue;
+    border-bottom: solid 1px white;
+}
+
+.sales_divs {
+    display: block;
+    margin: 5px;
+    text-align: center;
+    border: solid 1px white;
+    background-color:#2884cf;
+}
+
+#bgrBySpcs_sales {
+    position: relative;
+    justify-content: center;
+    width: 670px;
+    height: 230px;
+}
+
+#bgr_page1 {
+    width: 100%;
+    height: 170px;
+    background-color: darkcyan;
+}
+
+.slidebtn-div {
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    border-top: solid 1px white;
+    background-color: rgba(0,139,139, 0.3);
+}
+
+.slide-btn {
+    margin-left: 20px;
+    font-weight: bolder;
+    font-size: 15pt;
+    background: transparent;
+    border: 0px;
+    outline: inherit;
+    color: white;
+}
+
+.slide-btn:hover {
+    background-color: darkblue;
+}
+
+.burgerType_span {
+    margin-left: 20px;
+    font-family: sponge;
+    font-size: 15pt;
+    color: white;
+}
+
+
+#bgr_sales {
+    width: 450px;
+    height: 230px;
+}
+
+#spcs_sales {
+    width: 430px;
+    height: 280px;
+}
+
+#dayHour_sales {
+    width: 690px;
+    height: 280px;
+}
+
+
+
+/* View By Calendar */
+#viewbyCalendar {
+    border: 1px solid white;
+    background-color:  rgb(104, 175, 199);
+}
+
+.calendar_stats {
+    position: relative;
+    /* width: 950px; */
+    width: 1000px;
+    height: 538px;
+    /* margin-left: 250px; */
+    background-color: rgba(255,255,255, 0.4);
+    border: solid 2px white;
+    margin-left: 150px;
+}
+
+
+/* View All Data (Table) */
+
+#viewAll {
+    background-color: rgb(68, 158, 146);
+    border: 1px solid white;    
 }
 
 .scrolldiv {
-    display: inline-block;
-    position: absolute;
+    display: block;
+    position: relative;
     background-color:  rgba(255,255,255, 0.4);
     text-align: center;
     color: white;
-    width: 800px;
-    height: 529px;
-    margin-left: 250px;
+    /* width: 950px; */
+    width: 1000px;
+    height: 538px;
+    /* margin-left: 250px; */
     overflow: hidden;
     overflow-y: scroll;
+    border: 2px solid white;
+    margin-left: 150px;
 }
 
 .data_table {
@@ -94,13 +244,14 @@ body, html {
     font-size: 12px;
     width: 100%;
     color: darkblue;
-    border: solid 2px;
+    border: solid 2px white;
     border-collapse: collapse;
-    border-color: white;
 }
 
-.data_table thead {
-    
+.data_table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 th {
@@ -118,7 +269,6 @@ td,th {
 }
 
 tr:nth-child(even) {
-    /* background-color: rgb(103, 194, 224); */
-    background: url(resources/categ4.png);
-    color: white;
-  }
+    background-color: rgb(103, 194, 224);
+    color: whitesmoke;
+}
