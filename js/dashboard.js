@@ -25,27 +25,24 @@ $(document).ready(function(){
 
     });
 
+    $('.menu-btn').click(toggle);
+
     //link lights up when clicked
     $('ul li a').click(function(){
         $('li a').removeClass("currentpage");
         $(this).addClass("currentpage");
-      });
+    });
 
     //link lights up when scrolled
-    let mainNavLinks = document.querySelectorAll(".menu-item a");
-    window.addEventListener("scroll", event => {
-    let fromTop = window.scrollY;
-
-    mainNavLinks.forEach(link => {
-        let section = document.querySelector(link.hash);
-
-            if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop){
-            link.classList.add("currentpage");
-            } else {
-            link.classList.remove("currentpage");
+    $(window).scroll(function(){
+        var  scrollDistance = $(window).scrollTop();
+        $('.webpage').each(function(i) {
+            if ($(this).position().top <= scrollDistance) {
+                    $('a.currentpage').removeClass('currentpage');
+                    $('a').eq(i).addClass('currentpage');
             }
-        });
     });
+    }).scroll();
 
 });
 

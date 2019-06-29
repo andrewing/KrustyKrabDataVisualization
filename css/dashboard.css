@@ -3,13 +3,14 @@
     src: url(../resources/spongefont.ttf);
 }
 
-body, html {
+body {
     margin: 0px;
     padding: 0px;
     background-image: none;
     background-repeat: round;
     height: 100%;
-    display: block;
+    display: block; 
+    overflow-x: hidden;
 }
 
 .menu-bar, #menu-barID {
@@ -101,7 +102,6 @@ a.currentpage {
     border: 1px solid white;
     background-color: #2884cf;
 }
-
 
 .home_stats, #home_stats {
     display: flex;
