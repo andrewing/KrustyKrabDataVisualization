@@ -4,6 +4,7 @@
         <title>Krusty Krab</title>
         <link rel= "shortcut icon" type="image/png" href="resources/logo.png">
         <script src="libraries/jquery.js"></script>
+        <script src="libraries/lightslider.js"></script>
         <link rel=stylesheet href="css/dashboard.css">
 
     </head>
@@ -34,15 +35,6 @@
 
                 <div class="sales_divs" id="bgrBySpcs_sales">
                     <h1 class="sales_header">Burger By Species Sales</h1>
-                    <div id="bgr_page1"></div>
-                    <!-- <div id="bgr_page2"></div>
-                    <div id="bgr_page3"></div> -->
-                    <div class="slidebtn-div">
-                        <button class="slide-btn" id="prev"> ❮ </button>
-                        <span class="burgerType_span">Krusty Krab</span>
-                        <button class="slide-btn" id="next"> ❯ </button>
-                    </div>
-
                 </div>
 
                 <div class="sales_divs" id="bgr_sales">
@@ -67,7 +59,7 @@
             <div class= "headerContainer">
                     <span>View By Calendar</span>
             </div>  
-            <div class="calendar_stats"></div>
+            <div class="calendar_stats" id="cal_stats"></div>
         </div>
 
         <!-- VIEW ALL DATA -->
@@ -76,7 +68,7 @@
                 <span>All Data</span>
             </div>    
         
-            <div class="scrolldiv">
+            <div class="scrolldiv" id="scrolldivID">
                 <table class = "data_table" id="data_tableID">
                     <thead>
                         <tr>
