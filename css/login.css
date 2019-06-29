@@ -1,13 +1,13 @@
 
 @font-face {
     font-family: sponge;
-    src: url(resources/spongefont.ttf);
+    src: url(../resources/spongefont.ttf);
 }
 
 body {
     justify-content: center;
     align-items: center;
-    background: url(resources/trial.gif);
+    background: url(../resources/trial.gif);
     background-repeat: round;
 }
 

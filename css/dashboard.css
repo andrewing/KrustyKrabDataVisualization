@@ -1,6 +1,6 @@
 @font-face {
     font-family: sponge;
-    src: url(resources/spongefont.ttf);
+    src: url(../resources/spongefont.ttf);
 }
 
 body, html {
@@ -69,19 +69,19 @@ a.currentpage {
 }
 
 #menu-iconID {
-    content:  url(resources/show.png);
+    content:  url(../resources/show.png);
 }
 
 #menu-iconID:hover {
-    content:url(resources/show-hover.png);
+    content:url(../resources/show-hover.png);
 }
 
 #menu-iconID.active {
-    content: url(resources/hide.png);
+    content: url(../resources/hide.png);
 }
 
 #menu-iconID.active:hover {
-    content: url(resources/hide-hover.png);
+    content: url(../resources/hide-hover.png);
 }
 
 
@@ -256,7 +256,7 @@ a.currentpage {
 
 th {
     color: white;
-    background: url(resources/categ1.jpg);
+    background: url(../resources/categ1.jpg);
 }
 
 td,th {
