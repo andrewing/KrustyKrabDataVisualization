@@ -53,7 +53,7 @@ a.currentpage {
     color: white;
 }
 
-.menu-list h1 {
+.menu-list,h1 {
     font-family: sponge;
     font-size: 20pt;
     color: black;
