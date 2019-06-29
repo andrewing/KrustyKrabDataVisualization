@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    
+    // transfers the json file to html table 
     $.getJSON("http://localhost:3000/sales", function(data){
         let krusty_data = '';
 
@@ -23,13 +25,13 @@ $(document).ready(function(){
 
     });
 
-    //lights up when clicked
+    //link lights up when clicked
     $('ul li a').click(function(){
         $('li a').removeClass("currentpage");
         $(this).addClass("currentpage");
       });
 
-    //link lights up when in that page
+    //link lights up when scrolled
     let mainNavLinks = document.querySelectorAll(".menu-item a");
     window.addEventListener("scroll", event => {
     let fromTop = window.scrollY;
@@ -45,12 +47,11 @@ $(document).ready(function(){
         });
     });
 
-    
-    
-    
 });
 
+// toggles the side navigation
 function toggle() {
     document.getElementById("menu-barID").classList.toggle('active');
     document.getElementById("menu-iconID").classList.toggle('active');
+    document.getElementById("home_stats").classList.toggle('active');
 }
