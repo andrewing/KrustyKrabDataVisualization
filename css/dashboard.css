@@ -92,7 +92,7 @@ a.currentpage {
     font-size: 20pt;
     font-family: sponge;
     text-align: center;
-    color: yellow;
+    color: rgb(255,255,102);
     margin-left: 609px;
 }
 
@@ -245,4 +245,21 @@ td,th {
 tr:nth-child(even) {
     background-color: rgb(103, 194, 224);
     color: darkblue;
+}
+
+.xAxis,.yAxis,.grid{
+    color: lightgray;
+}
+rect{
+    fill: rgb(255,255,102)
+}
+
+.value,.divergence{   
+    font: 10px sans-serif;        
+    font-weight:bold;
+}
+
+line#limit{
+  stroke-width: 3;
+  stroke-dasharray: 3 6;
 }
