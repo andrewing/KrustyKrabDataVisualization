@@ -137,13 +137,29 @@ a.currentpage {
     color: white;
     background-color: darkblue;
     border-bottom: solid 1px white;
+    position: sticky;
+    top: 0;
+
 }
 
 #bgrBySpcs_sales {
-    position: relative;
     justify-content: center;
     width: 670px;
     height: 230px;
+}
+
+#burgerBySpecies_bar {
+    float: left;
+    width: 470px;
+    height: 200px;
+    background-color: #2884cf;
+}
+
+#burgerBySpecies_percent {
+    float: right;
+    width: 200px;
+    height: 200px;
+    background-color: #2884cf;
 }
 
 #bgr_sales {
