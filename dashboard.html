@@ -7,6 +7,7 @@
         <script src="libraries/d3.js"></script>
         <script src="libraries/own.js"></script>
         <script src="js/species_sale.js"></script>
+        <script src="js/viewByDate.js"></script>
         <link rel=stylesheet href="css/dashboard.css">
         <link rel="stylesheet" href="libraries/jquery-ui.min.css">
 
@@ -66,6 +67,22 @@
             </div>  
             <div class="calendar_stats" id="cal_stats">
                 <div class="calendar_ctnr"></div>
+                <div class="selectedDate_dataDivs">
+                    <div id="burgerBySpecies_day">
+                        <h1 class="sales_header">Burger By Species</h1>
+                    </div>
+                    
+                    <div id="burgerSales_day">
+                        <h1 class="sales_header">Burger Sales</h1>
+
+                    </div>
+                    
+                    <div id="speciesSales_day">
+                        <h1 class="sales_header">Species Sales</h1>
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
@@ -97,6 +114,7 @@
         
         <script>
             importSpeciesSales();
+            getSelectedData();
         </script>
     
     </body>
