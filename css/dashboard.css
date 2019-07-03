@@ -171,19 +171,26 @@ a.currentpage {
 
 .calendar_stats, #cal_stats {
     position: relative;
-    /* width: 950px; */
-    width: 1000px;
+    width: 1150px;
     height: 538px;
-    /* margin-left: 250px; */
     background-color: rgba(255,255,255, 0.4);
     border: solid 2px white;
-    margin-left: 150px;
+    margin-left: 65px;
     transition: 0.8s ease;
 }
 
 #cal_stats.active {
-    margin-left: 250px;
+    margin-left: 245px;
     transition: 0.8s ease;
+}
+
+.calendar_ctnr {
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    margin-top: 100px;
+    background-color: aliceblue;
+
 }
 
 /* View All Data (Table) */
