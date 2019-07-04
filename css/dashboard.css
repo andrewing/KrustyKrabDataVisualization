@@ -87,7 +87,7 @@ a.currentpage {
 }
 
 
-/* Title of the page */
+/*------------------------------- Title of the page------------------------------------- */
 .headerContainer span{
     font-size: 20pt;
     font-family: sponge;
@@ -97,7 +97,7 @@ a.currentpage {
 }
 
 
-/* Home Page */
+/*--------------------------------- Home Page---------------------------------------- */
 #home {
     border: 1px solid white;
     background-color: #2884cf;
@@ -121,7 +121,7 @@ a.currentpage {
     margin-left: 245px;
     transition: 0.8s ease;
 }
-
+/* -------------------- Sales ------------------------------------------- */
 .sales_divs {
     display: block;
     margin: 5px;
@@ -137,14 +137,32 @@ a.currentpage {
     color: white;
     background-color: darkblue;
     border-bottom: solid 1px white;
+
 }
 
+/* ----------------------- Burger By Species ------------------------------- */
+
 #bgrBySpcs_sales {
-    position: relative;
     justify-content: center;
     width: 670px;
     height: 230px;
 }
+
+#burgerBySpecies_bar {
+    float: left;
+    width: 470px;
+    height: 200px;
+    background-color: #2884cf;
+}
+
+#burgerBySpecies_percent {
+    float: right;
+    width: 200px;
+    height: 200px;
+    background-color: #2884cf;
+}
+
+/* ------------------------------------------------------------------------ */
 
 #bgr_sales {
     width: 450px;
@@ -163,7 +181,7 @@ a.currentpage {
 
 
 
-/* View By Calendar */
+/*--------------------------- View By Calendar -----------------------------------*/
 #viewbyCalendar {
     border: 1px solid white;
     background-color:  rgb(104, 175, 199);
@@ -171,22 +189,81 @@ a.currentpage {
 
 .calendar_stats, #cal_stats {
     position: relative;
-    /* width: 950px; */
+    /* width: 1150px; */
+    /* height: 538px; */
     width: 1000px;
-    height: 538px;
-    /* margin-left: 250px; */
     background-color: rgba(255,255,255, 0.4);
     border: solid 2px white;
+    /* margin-left: 65px; */
     margin-left: 150px;
     transition: 0.8s ease;
+    
+    display: flex;
+    flex-shrink: 1;
 }
 
 #cal_stats.active {
     margin-left: 250px;
     transition: 0.8s ease;
 }
+/* ------------------ Date Picker ----------------------------- */
+.calendar_ctnr {
+    margin: 10px;
+    width: 200px;
+    margin-top: 150px;
+}
 
-/* View All Data (Table) */
+.ui-datepicker table {
+    background-color: #2884cf;
+    color: white;
+}
+
+.ui-datepicker-header {
+    font-family: sponge;
+    font-size: 15pt;
+}
+
+/* ---------------------------------- Sales Divs --------------- */
+.selectedDate_dataDivs {
+    width: 758px;
+    height: 100%;
+    margin-left: 20px;
+    border-left: solid 2px white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    align-content: flex-start;
+    position: relative;
+    
+}
+
+#burgerBySpecies_day{
+
+    width: 748px;
+    height: 230px;
+    margin: 5px;
+    background-color: rgb(104, 175, 199);
+    border: 1px solid white;
+}
+
+#burgerSales_day {
+    background-color: rgb(104, 175, 199);    
+    border: 1px solid white;
+    width: 300px;
+    height: 280px;
+    margin: 5px;
+
+}
+
+#speciesSales_day {
+    width: 430px;
+    height: 280px;
+    margin: 5px;
+    border: 1px solid white;
+    background-color: rgb(104, 175, 199);
+}
+
+/*--------------------------- View All Data (Table)---------------------------- */
 
 #viewAll {
     background-color: rgb(12, 145, 145);
@@ -212,6 +289,8 @@ a.currentpage {
     margin-left: 250px;
     transition: 0.8s ease;
 }
+
+/* --------------------------------------------------- */
 
 .data_table {
     font-family: sponge;
@@ -246,6 +325,8 @@ tr:nth-child(even) {
     background-color: rgb(103, 194, 224);
     color: darkblue;
 }
+
+/* ------------------------------------------------- */
 
 .xAxis,.yAxis,.grid{
     color: lightgray;
