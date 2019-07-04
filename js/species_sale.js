@@ -41,7 +41,7 @@ function importSpeciesSales() {
         var xScale = d3.scaleLinear()
             .domain([0, Math.ceil(d3.max(count) / 100) * 100])
             .range([0, width]);
-
+        
         var yScale = d3.scaleBand()
             .domain(species)
             .range([0, height + margin.bottom])
@@ -58,8 +58,8 @@ function importSpeciesSales() {
             .attr("transform", "translate(" + margin.left + ", " + (margin.top - 1) + ")")
             .call(xAxis)
             .append("text")
-            .attr("y", 5)
-            .attr("dy", "-0.8em")
+            .attr("y", -10)
+            .attr("x", -10)
             .attr("text-anchor", "end")
             .text("Count")
 
@@ -96,9 +96,7 @@ function importSpeciesSales() {
             .attr("height", yScale.bandwidth())
             .attr("fill", "pink")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-
-
-
+            
         rect.transition()
             .duration(1000)
             .attr("width", function (d) {
@@ -177,7 +175,7 @@ function importSpeciesSales() {
 
 
         tooltip.transition()
-            .duration(1100)
+            .duration(1050)
             .attr("fill", "gray")
             .attr("transform", function (d) {
                 return "translate(" + (xScale(d.count) - 25) + "," + 0 + ")";
