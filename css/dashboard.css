@@ -101,6 +101,7 @@ a.currentpage {
 #home {
     border: 1px solid white;
     background-color: #2884cf;
+    height: 100vh;
 }
 
 .home_stats, #home_stats {
@@ -217,6 +218,10 @@ a.currentpage {
     margin-top: 150px;
 }
 
+.ui-datepicker {
+    font-size: 12px;
+}
+
 .ui-datepicker table {
     background-color: #2884cf;
     color: white;
@@ -229,7 +234,7 @@ a.currentpage {
 
 /* ---------------------------------- Sales Divs --------------- */
 .selectedDate_dataDivs {
-    width: 758px;
+    width: 141vw;
     height: 100%;
     margin-left: 20px;
     border-left: solid 2px white;
@@ -260,7 +265,7 @@ a.currentpage {
 }
 
 #speciesSales_day {
-    width: 430px;
+    width: 435px;
     height: 280px;
     margin: 5px;
     border: 1px solid white;
