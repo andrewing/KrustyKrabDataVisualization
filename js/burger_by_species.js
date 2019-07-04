@@ -1,6 +1,7 @@
 function importBurgerBySpecies() {
     var burgerSalesData;
     var burgerBySpeciesData;
+    var selectedSpecie;
     d3.json("http://localhost:3000/burger_sales").then(function (data) {
 
         var count = [], burger = [], all = ["All"];
@@ -91,6 +92,9 @@ function importBurgerBySpecies() {
                     .attr("x", xScale.bandwidth())
                     .attr("width", xScale.bandwidth())
             })
+            .on("click", function(d, i){
+                console.log(d.data)
+            })
 
 
         var legend = canvas.selectAll(".legend")
@@ -120,6 +124,8 @@ function importBurgerBySpecies() {
     d3.json("http://localhost:3000/burger_by_species").then(function (data) {
         importBurgerBySpecies = data;
 
+        console.log(data);
+
         var margin = { top: 20, right: 20, left: 20, bottom: 20 },
             width = 470 - margin.right - margin.left,
             height = 230 - margin.top - margin.bottom;
@@ -131,7 +137,49 @@ function importBurgerBySpecies() {
             .append("g")
             .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
+        var xScale = d3.scaleLinear()
+            .domain([0, Math.ceil(d3.max(count) / 100) * 100])
+            .range([0, width]);
 
+        var yScale = d3.scaleBand()
+            .domain(species)
+            .range([0, height + margin.bottom])
+            .paddingInner(0.4)
+
+        var xAxis = d3.axisTop()
+            .scale(xScale);
+
+        var yAxis = d3.axisLeft()
+            .scale(yScale);
+
+        var xg = canvas.append("g")
+            .attr("class", "xAxis")
+            .attr("transform", "translate(" + margin.left + ", " + (margin.top - 1) + ")")
+            .call(xAxis)
+            .append("text")
+            .attr("y", -10)
+            .attr("x", -10)
+            .attr("text-anchor", "end")
+            .text("Count")
+
+        var yg = canvas.append("g")
+            .attr("class", "yAxis")
+            .attr("transform", "translate(" + (margin.left - 1) + ", " + margin.top + ")")
+            .call(yAxis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-0.5em")
+            .attr("dy", "-0.55em")
+            .attr("y", 10)
+            .selectAll(".tick text")
+
+        canvas.append('g')
+            .attr('class', 'grid')
+            .attr("transform", "translate(" + (margin.left) + ", " + (margin.top - 1) + ")")
+            .call(d3.axisBottom()
+                .scale(xScale)
+                .tickSize(height + margin.top + margin.bottom, 0, 0)
+                .tickFormat(''))
     })
 
 }

@@ -27,7 +27,6 @@ function allBurgerSales(picked) {
             var dataDateString = datesInData.getFullYear() + "-" + (datesInData.getMonth() + 1) + "-" + datesInData.getDate();
 
             if (picked == dataDateString) {
-                
                 if (krustyData[x].burger == "Krusty Deluxe") {
                     krustyDeluxe++;
                 } else if (krustyData[x].burger == "Krusty Combo") {
