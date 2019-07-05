@@ -22,6 +22,8 @@ function getSalesData(pickedDate){
         let dataArr = [], burgerTypes = [], burgerCount = [], speciesTypes=[], speciesCount = [];
         let inc = 0;
 
+
+        // getting the sales of the picked date
         for(x in data) {
             var datesInData = new Date(data[x].datetime);
             var dataDateString = datesInData.getFullYear() + "-" + (datesInData.getMonth() + 1) + "-" + datesInData.getDate();
@@ -31,6 +33,7 @@ function getSalesData(pickedDate){
             }
         }
 
+        // lists the burger types in the json file
         for(b in dataArr) {
             var thisBurger = dataArr[b].burger;
             if(burgerTypes.includes(thisBurger) == false){
@@ -39,6 +42,7 @@ function getSalesData(pickedDate){
         }
         burgerTypes.sort();
 
+        // lists the species type in the json file
         for(s in dataArr){
             var thisSpecie = dataArr[s].species;
             if(speciesTypes.includes(thisSpecie) == false){
@@ -47,6 +51,7 @@ function getSalesData(pickedDate){
         }
         speciesTypes.sort();
 
+        // gets the total sale of each burger type that day
         for(let ctr=0; ctr<burgerTypes.length; ctr++){
             for(let y=0; y< dataArr.length; y++){
                 if(burgerTypes[ctr] == dataArr[y].burger){
@@ -63,6 +68,7 @@ function getSalesData(pickedDate){
         console.log(burgerSales);
         
 
+        // gets the total sale of each species that day
         for(let cntr=0; cntr<speciesTypes.length; cntr++){
             for(let z=0; z< dataArr.length; z++){
                 if(speciesTypes[cntr] == dataArr[z].species){
@@ -77,12 +83,9 @@ function getSalesData(pickedDate){
         let speciesSales = toJson(speciesParser);
         console.log(speciesSales);
 
-        let Obj = function(name) {
-            this.name = name;
-        }
-
-        var burgerBySpecies = [], burger = [], species = [], count = [];
-        var info = [];
+        // gets the burger by species sales of that day
+        let burger = [], species = [], count = [];
+        let info = [];
 
         for(st in speciesTypes){
             for(o in burgerTypes){
