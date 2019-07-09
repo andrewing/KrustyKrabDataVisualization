@@ -165,7 +165,6 @@ function draw() {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
     d3.json("http://localhost:3000/burger_by_species").then(function (data) {
 
         // {
@@ -260,7 +259,7 @@ function draw() {
                 .scale(yScale)
                 .tickSize(width + margin.right, 0, 0)
                 .tickFormat(''))
-            .attr("transform", "translate(" + (margin.left -5)+ ", " + 0 + ")")
+            .attr("transform", "translate(" + (margin.left - 5) + ", " + 0 + ")")
 
         canvas.append("g")
             .attr("class", "xAxis")
@@ -307,7 +306,7 @@ function draw() {
                 d3.select(this)
                     .style("opacity", 0.7)
             })
-            .on("mouseout", function (d) {
+            .on("mouseout", function () {
                 d3.select(this)
                     .style("opacity", 1);
             });
@@ -324,7 +323,7 @@ function draw() {
             reset = function () {
                 slice.selectAll("rect")
                     .transition()
-                    .duration(500)
+                    .duration(300)
                     .attr("width", x1Scale.bandwidth())
                     .attr("x", function (d) { return x1Scale(d.burger) + margin.left })
                     .attr("y", function (d) { return yScale(d.count); })
@@ -342,7 +341,7 @@ function draw() {
                     return !(d.burger == selectedBurger);
                 })
                 .transition()
-                .duration(500)
+                .duration(300)
                 .attr("height", 0)
                 .attr("y", height)
 
