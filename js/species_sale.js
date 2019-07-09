@@ -19,22 +19,20 @@ function importSpeciesSales() {
             for better data manipulation
         */
         var count = [], species = [];
-
+        
+        
         for (x in data) {
             count.push(data[x]);
             species.push(x);
         }
-
         
 
         var jsonString = multjsonparser(species, count, ["species", "count"]);
         var newData = toJson(jsonString);
         /*---------------------------------------------------------------------------------------*/
-
         var margin = { top: 20, right: 10, bottom: 100, left: 100 },
             width = 430 - margin.right - margin.left,
             height = 230 - margin.top - margin.bottom;
-
 
         var canvas = d3.select("#spcs_sales").append("svg")
             .attr("width", width + margin.right + margin.left)
@@ -98,7 +96,7 @@ function importSpeciesSales() {
                 return yScale(d.species);
             })
             .attr("height", yScale.bandwidth())
-            .attr("fill", "pink")
+            .attr("fill", "rgb(255,255,102)")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             
         rect.transition()
@@ -127,7 +125,7 @@ function importSpeciesSales() {
                         .attr("y1", margin.top + 0)
                         .attr("y2", margin.top + margin.bottom + height)
                         .attr("stroke", "red")
-                        
+
                     var diff = bar.append('text')
                         .attr('class', 'divergence')
                         .attr("y", (a) => margin.top + yScale(a.species) + yScale.bandwidth() - 5)
