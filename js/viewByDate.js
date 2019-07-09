@@ -12,7 +12,6 @@ function getSelectedData() {
             format = new Date(dateSelected);
             dateSelectedString = format.getFullYear() + "-" + (format.getMonth()+1) + "-" + format.getDate();
             getSalesData(dateSelectedString);
-            // allBurgerSales(dateSelectedString);
         }
     });
 }
@@ -110,38 +109,21 @@ function getSalesData(pickedDate){
         }
         
         console.log(info);
+
+// ----------------------------------------------- Species Sales ------------------------
+        var width = 400, height = 250, barPadding = 5;
+                var barWidth = 40;
+        
+                var canvas = d3.select("#speciesSales_day").append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .attr("class", "speciesSalesDay")
+                    .append("g")
+
+                var xScale = d3.scaleLinear()
+                    .domain([0, Math.ceil(d3.max(count)/100)* 100])
+                    .range([0, width])
+                
         
     });
 }
-
-
-// function dataset(){
-//     d3.json("http://localhost:3000/burger_sales", function(krustyData){
-
-//     console.log(d3.values(krustyData));
-//     var bgrsales = d3.values(krustyData);
-
-//     var svgWidth = 500, svgHeight = 500, barPadding = 5;
-//         var barWidth = 40;
-
-//         var svg = d3.select('svg')
-//             .attr("width", svgWidth)
-//             .attr("height", svgHeight)
-
-//         var bar_chart = svg.selectAll("rect")
-//                 .data(bgrsales)  
-//                 .enter()  
-//                 .append("rect")  
-//                 .attr("y", function(d) {  
-//                     return svgHeight - d  
-//                 })  
-//                 .attr("height", function(d) {  
-//                     return d;  
-//                 })  
-//                 .attr("width", barWidth - barPadding)  
-//                 .attr("transform", function (d, i) {  
-//                     var translate = [barWidth * i, 0];  
-//                     return "translate("+ translate +")";  
-//                 });
-//     });
-// }
