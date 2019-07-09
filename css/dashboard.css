@@ -11,6 +11,8 @@ body {
     height: 100%;
     display: block; 
     overflow-x: hidden;
+    /* height: 100vh; */
+
 }
 
 .menu-bar, #menu-barID {
@@ -101,7 +103,7 @@ a.currentpage {
 #home {
     border: 1px solid white;
     background-color: #2884cf;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .home_stats, #home_stats {
@@ -166,7 +168,7 @@ a.currentpage {
 /* ------------------------------------------------------------------------ */
 
 .webpage{
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 #bgr_sales {
@@ -214,7 +216,10 @@ a.currentpage {
 /* ------------------ Date Picker ----------------------------- */
 .calendar_ctnr {
     margin: 5px;
-    margin-top: 150px;
+    /* margin-top: 150px; */
+    left: 0px;
+    width: 210px;
+    height:262px;
 }
 
 .ui-datepicker {
@@ -242,7 +247,6 @@ a.currentpage {
     flex-shrink: 1;
     align-content: flex-start;
     position: relative;
-    
 }
 
 #burgerBySpecies_day{
