@@ -126,4 +126,4 @@ function getSalesData(pickedDate){
                 
         
     });
-}
+}m
