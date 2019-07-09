@@ -213,8 +213,7 @@ a.currentpage {
 }
 /* ------------------ Date Picker ----------------------------- */
 .calendar_ctnr {
-    margin: 10px;
-    width: 200px;
+    margin: 5px;
     margin-top: 150px;
 }
 

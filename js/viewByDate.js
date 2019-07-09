@@ -11,99 +11,108 @@ function getSelectedData() {
             dateSelected = dateText;
             format = new Date(dateSelected);
             dateSelectedString = format.getFullYear() + "-" + (format.getMonth()+1) + "-" + format.getDate();
-            allBurgerSales(dateSelectedString);
-            
+            getSalesData(dateSelectedString);
+            // allBurgerSales(dateSelectedString);
         }
     });
 }
 
-function allBurgerSales(picked) {
-    d3.json("http://localhost:3000/sales").then(function(krustyData){ 
-        
-        let krustyDeluxe = 0, krustyCombo = 0, krabbyPattie = 0;
-       
-        for(x in krustyData) {
-            var datesInData = new Date(krustyData[x].datetime);
-            var dataDateString = datesInData.getFullYear() + "-" + (datesInData.getMonth() + 1) + "-" + datesInData.getDate();
+function getSalesData(pickedDate){
+    d3.json("http://localhost:3000/sales").then(function(data){
+        let dataArr = [], burgerTypes = [], burgerCount = [], speciesTypes=[], speciesCount = [];
+        let inc = 0;
 
-            if (picked == dataDateString) {
-                if (krustyData[x].burger == "Krusty Deluxe") {
-                    krustyDeluxe++;
-                } else if (krustyData[x].burger == "Krusty Combo") {
-                    krustyCombo++;
-                } else if (krustyData[x].burger == "Krabby Pattie") {
-                    krabbyPattie++;
-                }
+
+        // getting the sales of the picked date
+        for(x in data) {
+            var datesInData = new Date(data[x].datetime);
+            var dataDateString = datesInData.getFullYear() + "-" + (datesInData.getMonth() + 1) + "-" + datesInData.getDate();
+            
+            if(pickedDate == dataDateString){
+               dataArr.push(data[x]);
             }
         }
 
-        console.log("Krusty Deluxe: " + krustyDeluxe);
-        console.log("Krusty Combo: " + krustyCombo);
-        console.log("Krabby Pattie: " + krabbyPattie);
+        // lists the burger types in the json file
+        for(b in dataArr) {
+            var thisBurger = dataArr[b].burger;
+            if(burgerTypes.includes(thisBurger) == false){
+                burgerTypes.push(dataArr[b].burger);
+            }
+        }
+        burgerTypes.sort();
 
+        // lists the species type in the json file
+        for(s in dataArr){
+            var thisSpecie = dataArr[s].species;
+            if(speciesTypes.includes(thisSpecie) == false){
+                speciesTypes.push(dataArr[s].species);
+            }
+        }
+        speciesTypes.sort();
 
-        //let burgerSales = [];
-        // burgerSales = [krustyCombo, krustyDeluxe, krabbyPattie];
+        // gets the total sale of each burger type that day
+        for(let ctr=0; ctr<burgerTypes.length; ctr++){
+            for(let y=0; y< dataArr.length; y++){
+                if(burgerTypes[ctr] == dataArr[y].burger){
+                    inc++;
+                }
+            }
+            burgerCount.push(inc);
+            inc = 0;
+        }
 
-        // var svgWidth = 300, svgHeight = 300, barWidth = 40, barPadding = 5;
+        var burgerParser = multjsonparser(burgerTypes, burgerCount, ["burger", "count"]);
+        var burgerSales = toJson(burgerParser);
 
-        // var svg = d3.select("#burger_today").append("svg")
-        //     .attr("width", svgWidth)
-        //     .attr("height", svgHeight)
+        console.log(burgerSales);
+        
 
-        // var bar_chart = svg.selectAll("rect")
-        //     .data(burgerSales)
-        //     .enter()
-        //     .append("rect")
-        //     .attr("y", function (d) {
-        //         return svgHeight - d;
-        //     })
+        // gets the total sale of each species that day
+        for(let cntr=0; cntr<speciesTypes.length; cntr++){
+            for(let z=0; z< dataArr.length; z++){
+                if(speciesTypes[cntr] == dataArr[z].species){
+                    inc++;
+                }
+            }
+            speciesCount.push(inc);
+            inc = 0;
+        }
 
-        //     .attr("height", function (d) {
-        //         return d;
-        //     })
+        let speciesParser = multjsonparser(speciesTypes, speciesCount, ["species", "count"]);
+        let speciesSales = toJson(speciesParser);
+        console.log(speciesSales);
 
-        //     .attr("width", barWidth - barPadding)
-        //     .attr("transform", function (d, i) {
-        //         var translate = [barWidth * i, 0];
-        //         return "translate(" + translate + ")";
-        //     })
+        // gets the burger by species sales of that day
+        let burger = [], species = [], count = [];
+        let info = [];
+
+        for(st in speciesTypes){
+            for(o in burgerTypes){
+                for(d in dataArr){
+                    if(dataArr[d].species == speciesTypes[st] && dataArr[d].burger == burgerTypes[o]){
+                        inc++;
+                    }
+                    d++;
+                }
+                burger.push(burgerTypes[o]);
+                species.push(speciesTypes[st]);
+                count.push(inc);
+                inc = 0;
+                o++;
+            }
+
+            st++;
+        }
+
+        for(t in burger){
+            info.push([burger[t],species[t], count[t]]);
+        }
+        
+        console.log(info);
+        
     });
 }
-
-// function getAllDataBurger(picked) {
-//     d3.json("http://localhost:3000/sales", function (krustyData) {
-
-//         let burgerSales = [];
-
-//         selectedDate = new Date(picked);
-//         selectedDateString = selectedDate.getFullYear() + "-" + (selectedDate.getMonth() + 1) + "-" + selectedDate.getDate();
-
-//         for (x in krustyData) {
-//             var datesInData = new Date(krustyData[x].datetime);
-//             var dataDateString = datesInData.getFullYear() + "-" + (datesInData.getMonth() + 1) + "-" + datesInData.getDate();
-
-//             if (selectedDateString == dataDateString) {
-//                 burgerSales.push(krustyData[x].burger);
-//             }
-//         }
-
-//         for(let i=0; i< burgerSales.length; i++){
-//             console.log(burgerSales[i]);
-//         }
-        
-//     });   
-// } 
-
-// function allSpeciesSale(picked) {
-//     let leather=0, salmon=0,seahorse=0,coral=0, clam=0, whale=0,sealion=0;
-//     let species = ["leatherback turtle", "salmon", "seahorse", "coral", "giant clam", "gray whale", "sea lion"];
-
-    
-    
-
-// }
-
 
 
 // function dataset(){
