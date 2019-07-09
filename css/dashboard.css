@@ -340,8 +340,9 @@ tr:nth-child(even) {
 .xAxis,.yAxis,.grid{
     color: lightgray;
 }
-rect{
-    fill: rgb(255,255,102)
+
+.legend{
+    fill: lightgray;
 }
 
 .value,.divergence{   
