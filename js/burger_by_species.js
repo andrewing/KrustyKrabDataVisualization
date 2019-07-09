@@ -8,7 +8,7 @@ function importBurgerBySpecies() {
 
     d3.json("http://localhost:3000/burger_sales").then(function (data) {
 
-        var count = [], burger = [], all = ["All"];
+        var count = [], burger = [];
         for (x in data) {
             count.push(data[x]);
             burger.push(x);
@@ -32,7 +32,7 @@ function importBurgerBySpecies() {
 
 
         var xScale = d3.scaleBand()
-            .domain(all)
+            .domain(["All"])
             .range([0, width - margin.left - margin.right])
             .paddingInner([0.2])
 

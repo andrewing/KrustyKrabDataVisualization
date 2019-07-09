@@ -53,7 +53,8 @@ function importSpeciesSales() {
             .scale(xScale);
 
         var yAxis = d3.axisLeft()
-            .scale(yScale);
+            .scale(yScale)
+            .tickSize(0);
 
         var xg = canvas.append("g")
             .attr("class", "xAxis")
