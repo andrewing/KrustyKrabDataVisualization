@@ -58,7 +58,7 @@ function importBurgerBySpecies() {
 
         var color = d3.scaleOrdinal()
             .domain(burger)
-            .range(['rgb(251, 128, 114)', 'rgb(179, 222, 105)', 'rgb(128, 177, 211)'])
+            .range(['violet', '#FFDB58', 'turquoise'])
 
         var total = 0;
         for (var i = 0; i < burger.length; i++) {
@@ -157,7 +157,7 @@ function draw() {
         .scale(yScale)
 
     var color = d3.scaleOrdinal()
-        .range(['rgb(251, 128, 114)', 'rgb(128, 177, 211)', 'rgb(179, 222, 105)', 'rgb(253, 180, 98)']);
+        .range(['violet', 'turquoise', '#FFDB58', 'rgb(253, 180, 98)']);
 
     var canvas = d3.select('#burgerBySpecies_bar').append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -261,6 +261,16 @@ function draw() {
                 .tickFormat(''))
             .attr("transform", "translate(" + (margin.left - 5) + ", " + 0 + ")")
 
+
+        // canvas.append("g")
+        //     .attr("class", "grid")
+        //     .call(d3.axisTop()
+        //         .scale(x1Scale)
+        //         .tickSize(height + margin.top + margin.bottom, 0, 0)
+        //         .tickFormat(''))
+        //     .attr("transform", "translate(" + (margin.left) + ", " + (margin.top - 1) + ")")
+
+
         canvas.append("g")
             .attr("class", "xAxis")
             .attr("transform", "translate(" + margin.left + "," + height + ")")
@@ -344,8 +354,6 @@ function draw() {
                 .duration(300)
                 .attr("height", 0)
                 .attr("y", height)
-
-
         }
 
 
