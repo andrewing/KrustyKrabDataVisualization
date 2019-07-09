@@ -235,22 +235,22 @@ a.currentpage {
 
 /* ---------------------------------- Sales Divs --------------- */
 .selectedDate_dataDivs {
-    /* width: 538px; */
     width: 141vw;
     height: 100%;
-    margin-left: 50px;
+    margin-left: 10px;
     border-left: solid 2px white;
     display: flex;
     flex-wrap: wrap;
     flex-shrink: 1;
     align-content: flex-start;
     position: relative;
-    background-color: black;
+    /* background-color: black; */
 }
 
-/* #burgerBySpecies_day{
+#burgerBySpecies_day{
     width: 748px;
     height: 230px;
+    margin: 5px;
     margin-left: 60px;
     background-color: rgb(104, 175, 199);
     border: 1px solid white;
@@ -270,7 +270,7 @@ a.currentpage {
     margin: 5px;
     border: 1px solid white;
     background-color: rgb(104, 175, 199);
-} */
+}
 
 /*--------------------------- View All Data (Table)---------------------------- */
 
