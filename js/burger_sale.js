@@ -1,23 +1,6 @@
 function importBurgerSales() {
-    d3.json("http://localhost:3000/species_sales").then(function (data) {
-        /*
-            Manipulating data:
-            instead of 
-            {
-                "leatherback": 500
-                "coral": 25
-            }
-            it is now
-            {
-                "species": "leatherback",
-                "count": 500
-            },
-            {
-                "species": "coral".
-                "count": 25
-            }
-            for better data manipulation
-        */
+    d3.json("http://localhost:3000/burger_sales").then(function (data) {
+        
         var count = [], burger = [];
 
         for (x in data) {
@@ -41,7 +24,6 @@ function importBurgerSales() {
             .attr("height", height + margin.top + margin.bottom)
             .attr("class", "burger_sale")
             .append("g")
-        // .attr("transform", "translate(" + margin.left + "," + margin.right + ")");
         var xScale = d3.scaleLinear()
             .domain([0, Math.ceil(d3.max(count) / 100) * 100])
             .range([0, width]);

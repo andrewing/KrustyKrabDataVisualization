@@ -248,7 +248,7 @@ a.currentpage {
 }
 
 #burgerBySpecies_day{
-    width: 748px;
+    width: 60vw;
     height: 230px;
     margin: 5px;
     margin-left: 60px;
@@ -259,13 +259,13 @@ a.currentpage {
 #burgerSales_day {
     background-color: rgb(104, 175, 199);    
     border: 1px solid white;
-    width: 400px;
+    width: 32vw;
     height: 280px;
     margin: 5px;
 }
 
 #speciesSales_day {
-    width: 435px;
+    width: 37vw;
     height: 280px;
     margin: 5px;
     border: 1px solid white;
