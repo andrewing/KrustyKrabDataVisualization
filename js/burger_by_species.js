@@ -96,6 +96,8 @@ function importBurgerBySpecies() {
                     .attr("x", xScale.bandwidth() - 5)
                     .attr("width", xScale.bandwidth() + 10);
 
+                
+
             })
             .on("mouseout", function (d, i) {
                 d3.select(this)
@@ -303,7 +305,7 @@ function draw() {
         var slice = canvas.selectAll(".slice")
             .data(dataJSON)
             .enter().append("g")
-            .attr("class", "g")
+            .attr("class", "slice")
             .attr("transform", function (d) { return "translate(" + x0Scale(d.species) + ",0)"; });
 
         var tooltip = d3.select("body").append("div")
@@ -350,7 +352,7 @@ function draw() {
             });
         
 
-        slice.selectAll("rect")
+        slice.selectAll("g>rect")
             .transition()
             .duration(1000)
             .attr("y", function (d) { return yScale(d.count); })
@@ -358,7 +360,7 @@ function draw() {
 
         update = function (selectedBurger) {
 
-
+            console.log(selectedBurger)
             reset = function () {
                 slice.selectAll("rect")
                     .transition()

@@ -171,6 +171,7 @@ function importHourSales() {
             .datum(dates)
             .attr("transform", "translate(" + (margin.left + 1) + ", " + margin.top + ")")
             .attr("fill", "#f88379")
+        
             .on("touchmove mouseover", function () {
                 d3.select(this)
                     .transition()
@@ -207,8 +208,11 @@ function importHourSales() {
             .on("mousemove", mousemove)
             .attr("d", d => area(d, false))
             .transition()
-            .duration(1500)
+            .duration(450)
             .attr("d", d => area(d, true))
+            .on("end", function(){
+                
+            })
 
 
 

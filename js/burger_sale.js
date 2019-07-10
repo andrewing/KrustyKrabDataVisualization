@@ -29,11 +29,11 @@ function importBurgerSales() {
             .round([0, 1])
             .paddingInner([0.2])
             .domain(burger)
-
+        
         var yScale = d3.scaleLinear()
             .range([height, 0])
             .domain([0, Math.ceil(d3.max(count)/ 100) * 100])
-
+    
         var xAxis = d3.axisBottom()
             .scale(xScale)
             .tickSize(0)
@@ -83,7 +83,7 @@ function importBurgerSales() {
                 return yScale(d.burger);
             })
             .attr("width", xScale.bandwidth()-80)
-            .attr("fill", "")
+            .attr("fill", "orange")
             .attr("transform", "translate(" + (margin.left+40) + ", 0)")
             .attr("y", function (d) { return yScale(0); })
             .attr("height", function (d) { return height - yScale(0); })
@@ -106,6 +106,7 @@ function importBurgerSales() {
                 rect.on("mouseover", function(actual, i){
                     d3.select(this)
                         tooltip.transition().duration(500).style("visibility", "visible").text(actual.count);  
+                    
                     
                 })
 
