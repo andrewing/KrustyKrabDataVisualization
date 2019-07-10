@@ -205,6 +205,8 @@ function draw() {
             }
         }
 
+      
+
 
         var singleJSON;
         var dataJSON = []
@@ -220,6 +222,8 @@ function draw() {
                 }
             }
         }
+
+       console.log(dataJSON);
         // var burgerNames = [], species = [], count = []
         // var salesJSON = [], burgerNamesJSON = [], dataJSONSing, dataJSON = [];
         // for (x in data) {

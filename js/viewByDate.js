@@ -87,8 +87,8 @@ function getSalesData(pickedDate) {
         // console.log(speciesSales);
         updateSpeciesSales(speciesSales, speciesTypes, speciesCount);
         // gets the burger by species sales of that day
-        let burger = [], species = [], count = [];
-        let info = [];
+        var info = [], burger = [], species = [], count = [];
+        
 
         for (st in speciesTypes) {
             for (o in burgerTypes) {
@@ -107,11 +107,27 @@ function getSalesData(pickedDate) {
             st++;
         }
 
-        for (t in burger) {
-            info.push([burger[t], species[t], count[t]]);
+        var speciesTypes = [];
+        
+
+    
+
+        var singleJSON;
+        var dataJSON = []
+        for (x in species) {
+            singleJSON = { species: species[x], sales: [] }
+            dataJSON.push(singleJSON)
         }
 
-        // console.log(info);
+        for (x in dataJSON) {
+            for (y in info) {
+                if (info[y][1] == dataJSON[x].species) {
+                    dataJSON[x].sales.push({ burger: burger[y], count: count[y] });
+                }
+            }
+        }
+
+       console.log(dataJSON);
 
 
 

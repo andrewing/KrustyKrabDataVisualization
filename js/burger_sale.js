@@ -12,7 +12,7 @@ function importBurgerSales() {
         var burgerSales = toJson(jsonString);
         /*---------------------------------------------------------------------------------------*/
 
-        console.log(burgerSales);
+        // console.log(burgerSales);
 
         var margin = { top: 10, right: 10, bottom: 20, left: 20 },
             width = 430 - margin.right - margin.left,
@@ -99,12 +99,6 @@ function importBurgerSales() {
                     d3.selectAll("")
                 })
             })
-        
-        
-        
-            
-
-
         
     })
 }
