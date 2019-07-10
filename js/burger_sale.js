@@ -12,11 +12,6 @@ function importBurgerSales() {
         var burgerSales = toJson(jsonString);
         /*---------------------------------------------------------------------------------------*/
 
-<<<<<<< HEAD
-        // console.log(burgerSales);
-
-=======
->>>>>>> 939976c6ac1675914d50aaf4928c0940dc942e19
         var margin = { top: 10, right: 10, bottom: 20, left: 20 },
             width = 430 - margin.right - margin.left,
             height = 205 - margin.top - margin.bottom,
@@ -106,10 +101,6 @@ function importBurgerSales() {
                 rect.on("mouseover", function(actual, i){
                     d3.selectAll("")
                 })
-<<<<<<< HEAD
-            })
-        
-=======
                 /**code of adding tooltips to each of the bars, follows the mouse
                  *  .on("mouseover", function(blah){
                         hoverTooltip.style("visibility", "visible").text(actual.count)
@@ -125,6 +116,5 @@ function importBurgerSales() {
                     })
                 */
             })
->>>>>>> 939976c6ac1675914d50aaf4928c0940dc942e19
     })
 }
