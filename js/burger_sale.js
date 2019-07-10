@@ -7,161 +7,104 @@ function importBurgerSales() {
             count.push(data[x]);
             burger.push(x);
         }
-
         
-
         var jsonString = multjsonparser(burger, count, ["burger", "count"]);
-        var newData = toJson(jsonString);
+        var burgerSales = toJson(jsonString);
         /*---------------------------------------------------------------------------------------*/
 
-        var margin = { top: 20, right: 10, bottom: 100, left: 100 },
+        console.log(burgerSales);
+
+        var margin = { top: 10, right: 10, bottom: 20, left: 20 },
             width = 430 - margin.right - margin.left,
-            height = 201 - margin.top - margin.bottom;
-
-
+            height = 205 - margin.top - margin.bottom,
+            rectWidth = 100;
+        
         var canvas = d3.select("#bgr_sales").append("svg")
-            .attr("width", width + margin.right + margin.left)
+            .attr("class", "canvas")
+            .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
-            .attr("class", "burger_sale")
             .append("g")
-        var xScale = d3.scaleLinear()
-            .domain([0, Math.ceil(d3.max(count) / 100) * 100])
-            .range([0, width]);
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var yScale = d3.scaleBand()
+        var xScale = d3.scaleBand()
+            .range([0, width])
+            .round([0, 1])
+            .paddingInner([0.2])
             .domain(burger)
-            .range([0, height + margin.bottom])
-            .paddingInner(0.4)
 
-        var xAxis = d3.axisTop()
-            .scale(xScale);
+        var yScale = d3.scaleLinear()
+            .range([height, 0])
+            .domain([0, Math.ceil(d3.max(count)/ 50) * 50])
+
+        var xAxis = d3.axisBottom()
+            .scale(xScale)
+            .tickSize(0)
 
         var yAxis = d3.axisLeft()
-            .scale(yScale);
+            .scale(yScale)
 
-        var xg = canvas.append("g")
-            .attr("class", "xAxis")
-            .attr("transform", "translate(" + margin.left + ", " + (margin.top - 1) + ")")
-            .call(xAxis)
-            .append("text")
-            .attr("y", -10)
-            .attr("x", -10)
-            .attr("text-anchor", "end")
-            .text("Count")
-
-        var yg = canvas.append("g")
-            .attr("class", "yAxis")
-            .attr("transform", "translate(" + (margin.left - 1) + ", " + margin.top + ")")
-            .call(yAxis)
-            .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-0.5em")
-            .attr("dy", "-0.55em")
-            .attr("y", 10)
-            .selectAll(".tick text")
-        canvas.append('g')
-            .attr('class', 'grid')
-            .attr("transform", "translate(" + (margin.left) + ", " + (margin.top - 1) + ")")
-            .call(d3.axisBottom()
-                .scale(xScale)
-                .tickSize(height + margin.top + margin.bottom, 0, 0)
+        canvas.append("g")
+            .attr("class", "grid")
+            .call(d3.axisRight()
+                .scale(yScale)
+                .tickSize(width+ margin.right, 0,0)
                 .tickFormat(''))
+            .attr("transform", "translate(" + (margin.left - 5)+ "," + 0 + ")")
+
+        canvas.append("g")
+            .attr("class", "xAxis")
+            .attr("transform", "translate(" + margin.left + "," + height + ")")
+            .call(xAxis)
+
+        canvas.append("g")
+            .attr("class", "yAxis")
+            .style('opacity', '0')
+            .attr("transform", "translate(" + (margin.left-5) + ", " + 0 + ")")
+            .call(yAxis)
+            
+
+        canvas.select('.yAxis')
+            .transition()
+            .duration(200)
+            .style('opacity', '1');
+        
 
         const bar = canvas.selectAll()
-            .data(newData)
+            .data(burgerSales)
             .enter()
             .append("g")
+            .attr("transform", function(d){
+                return "translate(" + xScale(d.burger) + ",0)";
+            })
 
         const rect = bar.append("rect")
             .attr("width", function (d) {
                 return 0;
             })
-            .attr("y", function (d) {
+            .attr("x", function (d) {
                 return yScale(d.burger);
             })
-            .attr("height", yScale.bandwidth())
-            .attr("fill", "pink")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .attr("width", xScale.bandwidth()-80)
+            .attr("fill", "rgb(255,255,102)")
+            .attr("transform", "translate(" + (margin.left+40) + ", 0)")
+            .attr("y", function (d) { return yScale(0); })
+            .attr("height", function (d) { return height - yScale(0); })
             
         rect.transition()
             .duration(1000)
-            .attr("width", function (d) {
-                return xScale(d.count);
-            })
-            .on("end", function () {
-                rect.on("mouseover", function (actual, i) {
-                    d3.selectAll(".value")
-                        .attr("visibility", "hidden")
-
-                    d3.select(this)
-                        .transition()
-                        .duration(300)
-                        .attr("y", (a) => yScale(a.burger) - 2)
-                        .style("fill", "rgb(255,255,150)")
-                        .attr("height", yScale.bandwidth() + 4)
-                        .attr("opacity", 0.7);
-
-                    const x = xScale(actual.count)
-                    var line = canvas.append("line")
-                        .attr("id", "limit")
-                        .attr("x1", margin.left + x)
-                        .attr("x2", margin.left + x)
-                        .attr("y1", margin.top + 0)
-                        .attr("y2", margin.top + margin.bottom + height)
-                        .attr("stroke", "red")
-                        
-                    var diff = bar.append('text')
-                        .attr('class', 'divergence')
-                        .attr("y", (a) => margin.top + yScale(a.burger) + yScale.bandwidth() - 5)
-                        .attr("x", (a) => margin.left + xScale(a.count) - 4)
-                        .attr('text-anchor', 'end')
-                        .attr("fill", function (a) {
-                            const divergence = (a.count - actual.count).toFixed()
-                            if (divergence > 0) return "green"
-                            else return "red"
-                        })
-                        .text((a, idx) => {
-                            const divergence = (a.count - actual.count).toFixed()
-                            let text = ''
-                            if (divergence > 0) text += '+'
-                            text += `${divergence}`
-                            return idx !== i ? text : '';
-                        })
-
-
+            .attr("y", function (d) { return yScale(d.count); })
+            .attr("height", function (d) { return height - yScale(d.count); })
+            .on("end", function(){
+                rect.on("mouseover", function(actual, i){
+                    d3.selectAll("")
                 })
-                    .on("mouseout", function () {
-                        d3.selectAll(".value")
-                            .attr("visibility", "visible")
-
-                        d3.select(this)
-                            .transition()
-                            .duration(300)
-                            .style("fill", "rgb(255,255,102)")
-                            .attr("y", (a) => yScale(a.burger))
-                            .attr("height", yScale.bandwidth())
-                            .attr("opacity", 1);
-
-                        canvas.selectAll("#limit").remove()
-                        canvas.selectAll(".divergence").remove()
-                    })
             })
+        
+        
+        
+            
 
 
-        const tooltip = bar.append("text")
-            .attr("class", "value")
-            .attr("text-anchor", "end")
-            .attr("fill", "#2884cf")
-            .attr("y", (a) => margin.top + yScale(a.burger) + yScale.bandwidth() - 5)
-            .attr("x", (a) => margin.left + 22)
-            .text((a) => a.count)
-
-
-        tooltip.transition()
-            .duration(1050)
-            .attr("fill", "gray")
-            .attr("transform", function (d) {
-                return "translate(" + (xScale(d.count) - 25) + "," + 0 + ")";
-            })
+        
     })
 }
