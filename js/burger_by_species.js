@@ -255,8 +255,7 @@ function draw() {
         x1Scale.domain(burgerNames)
             .range([0, x0Scale.bandwidth()])
         yScale.domain([0, Math.ceil(d3.max(count) / 50) * 50])
-        console.log(species);
-        console.log(burgerNames);
+        
 
 
         canvas.append("g")
