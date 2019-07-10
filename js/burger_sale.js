@@ -102,7 +102,7 @@ function importBurgerSales() {
                     d3.selectAll("")
                 })
                 /**code of adding tooltips to each of the bars, follows the mouse
-                 *  .on("mouseover", function(blah){
+                 *  .on("mouseover", function(){
                         hoverTooltip.style("visibility", "visible").text(actual.count)
                     }
 

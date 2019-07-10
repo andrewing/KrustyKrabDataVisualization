@@ -1,9 +1,11 @@
 var drawBurgerSales;
 var drawSpeciesSales;
 var drawBurgerBySpecies;
+var drawBurgerBySpeciesBar;
 
 var updateSpeciesSales;
 var updateBurgerBySpecies;
+var updateBurgerBySpeciesBar;
 var first = false;
 function getSelectedData() {
     let dateSelected, format, dateSelectedString;
@@ -124,6 +126,7 @@ function getSalesData(pickedDate) {
 
             info.push(bu);
         }
+
         var speciesUnique = species.filter((x, i, a) => a.indexOf(x) == i)
         var singleJSON;
         var burgerBySpecies = []
@@ -140,10 +143,8 @@ function getSalesData(pickedDate) {
             }
         }
 
-        updateBurgerBySpecies(burgerBySpecies, burgerSales, burgerTypes, speciesTypes);
-
-
-
+        updateBurgerBySpecies(burgerSales, burgerTypes);
+        updateBurgerBySpeciesBar(burgerBySpecies, speciesTypes, burgerTypes, count);
 
 
     })
@@ -177,12 +178,10 @@ var drawByDaySales = function () {
 
         var color = d3.scaleOrdinal()
             .range(['violet', '#FFDB58', 'turquoise'])
-
-        updateBurgerBySpecies = function (bbsData, bsData, burger, species) {
+        updateBurgerBySpecies = function (bsData, burger) {
             canvas.selectAll("rect").remove();
             canvas.selectAll(".legend").remove();
             var burgerSalesData = bsData;
-            var burgerBySpeciesData = bbsData;
             color.domain(burger);
             var string = "";
             for (x in burgerSalesData) {
@@ -202,7 +201,7 @@ var drawByDaySales = function () {
             burgerSalesData = [burgerSalesData];
 
 
-            
+
 
             var stackedData = d3.stack()
                 .keys(burger)
@@ -244,22 +243,22 @@ var drawByDaySales = function () {
                     // reset()
                 })
 
-                pctbar.transition()
-                    .duration(1000)
-                    .attr("height", function(d){
-                        return yScale(d[0]) - yScale(d[1])
-                    }) 
+            pctbar.transition()
+                .duration(1000)
+                .attr("height", function (d) {
+                    return yScale(d[0]) - yScale(d[1])
+                })
 
 
             var legend = canvas.selectAll(".legend")
                 .data(color.domain())
                 .enter().append("g")
                 .attr("class", "legend")
-            
+
             legend.transition()
-                    .duration(1000)
-                    .attr("transform", function (d, i) { return "translate(0," + ((height - 18) - (i * 20)) + ")"; });
-            
+                .duration(1000)
+                .attr("transform", function (d, i) { return "translate(0," + ((height - 18) - (i * 20)) + ")"; });
+
 
             legend.append("rect")
                 .attr("x", width - margin.right + 15)
@@ -275,40 +274,181 @@ var drawByDaySales = function () {
                 .style("text-anchor", "start")
                 .text(function (d) { return d; });
 
-            var draw = function () {
-                var margin = { top: 20, right: 20, left: 20, bottom: 20 },
-                    width = 470 - margin.right - margin.left,
-                    height = 200 - margin.top - margin.bottom;
 
-                var x0Scale = d3.scaleBand()
-                    .range([0, width])
-                    .round([0.1])
-                    .paddingInner([0.2]);
-                var x1Scale = d3.scaleBand();
 
-                var yScale = d3.scaleLinear()
-                    .range([height, 0]);
 
-                var xAxis = d3.axisBottom()
-                    .scale(x0Scale)
-                    .tickSize(0)
-
-                var yAxis = d3.axisLeft()
-                    .scale(yScale)
-
-                var color = d3.scaleOrdinal()
-                    .range(['violet', 'turquoise', '#FFDB58', 'rgb(253, 180, 98)']);
-
-                var canvas = d3.select('#burgerBySpecies_bar').append("svg")
-                    .attr("class", "canvas")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-                
-            }
         }
+    }
+
+    drawBurgerBySpeciesBar = function () {
+        var margin = { top: 20, right: 20, left: 20, bottom: 20 },
+            width = 470 - margin.right - margin.left,
+            height = 200 - margin.top - margin.bottom;
+
+        var canvas = d3.select('#burgerBySpecies_day').append("svg")
+            .attr("class", "canvas")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var x0Scale = d3.scaleBand()
+            .domain([])
+            .range([0, width])
+            .round([0.1])
+            .paddingInner([0.2]);
+        var x1Scale = d3.scaleBand();
+
+        var yScale = d3.scaleLinear()
+            .domain([])
+            .range([height, 0])
+
+        var xAxis = d3.axisBottom()
+            .scale(x0Scale)
+            .tickSize(0)
+
+        var yAxis = d3.axisLeft()
+            .scale(yScale)
+            .ticks(5);
+        var color = d3.scaleOrdinal()
+            .range(['violet', 'turquoise', '#FFDB58', 'rgb(253, 180, 98)']);
+
+        canvas.append("g")
+            .attr("class", "xAxis day bbs")
+            .attr("transform", "translate(" + margin.left + "," + height + ")")
+            .call(xAxis);
+
+        canvas.append("g")
+            .attr("class", "yAxis day bbs")
+            .style('opacity', '1')
+            .attr("transform", "translate(" + (margin.left - 5) + ", " + 0 + ")")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .style('font-weight', 'bold')
+            .text("Count");
+
+        var gridAxis = d3.axisRight()
+            .scale(yScale)
+            .tickSize(width + margin.right, 0, 0)
+            .tickFormat('')
+            .ticks(5)
+
+        var grid = canvas.append("g")
+            .attr("class", "grid")
+            .attr("transform", "translate(" + (margin.left - 5) + ", " + 0 + ")")
+            .call(gridAxis)
+
+
+        updateBurgerBySpeciesBar = function (data, species, burgerNames, count) {
+            canvas.selectAll("rect").remove();
+            x0Scale.domain(species);
+            xAxis.scale(x0Scale)
+            d3.selectAll("g.xAxis.day.bbs")
+                .transition()
+                .duration(500)
+                .call(xAxis);
+            yScale.domain([0, Math.ceil(d3.max(count) / 10) * 10])
+            yAxis.scale(yScale)
+            d3.selectAll("g.yAxis.day.bbs")
+                .transition()
+                .duration(500)
+                .call(yAxis)
+            gridAxis.scale(yScale);
+            grid.transition().duration(500).call(gridAxis);
+
+            x1Scale.domain(burgerNames)
+                .range([0, x0Scale.bandwidth()])
+
+            var slice = canvas.selectAll(".slice")
+                .data(data)
+                .enter().append("g")
+                .attr("class", "g")
+                .attr("transform", function (d) { return "translate(" + x0Scale(d.species) + ",0)"; });
+            var tooltip = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("visibility", "hidden")
+
+            var rect = slice.selectAll("rect")
+                .data(function (d) { return d.sales; })
+                .enter().append("rect")
+                .attr("width", x1Scale.bandwidth())
+                .attr("x", function (d) { ; return x1Scale(d.burger) + margin.left })
+                .style("fill", function (d) { return color(d.burger) })
+                .attr("class", function (d) {
+                    return d.burger;
+                })
+                .attr("y", function (d) { return yScale(0); })
+                .attr("height", function (d) { return height - yScale(0); })
+                .on("mouseover", function (d) {
+                    d3.select(this)
+                        .style("opacity", 0.7)
+
+                    tooltip.transition().duration(200).style("opacity", 0.9);
+                    tooltip.html("<span>" + d.count + "</span>")
+                        .style("left", "${d3.event.layerX}px")
+                        .style("top", "${(d3.event.layerY - 28)}px")
+
+                    return tooltip.style("visibility", "visible")
+
+                })
+                .on("mouseout", function () {
+                    d3.select(this)
+                        .style("opacity", 1);
+
+                    tooltip.transition().duration(500).style("opacity", 0);
+                    return tooltip.style("visibility", "hidden")
+                })
+
+                .on("mousemove", function () {
+                    return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px")
+                })
+
+                .on("mouseclick", function (d) {
+
+                });
+
+
+            slice.selectAll("rect")
+                .transition()
+                .duration(1000)
+                .attr("y", function (d) { return yScale(d.count); })
+                .attr("height", function (d) { return height - yScale(d.count); });
+
+            update = function (selectedBurger) {
+
+
+                reset = function () {
+                    slice.selectAll("rect")
+                        .transition()
+                        .duration(300)
+                        .attr("width", x1Scale.bandwidth())
+                        .attr("x", function (d) { return x1Scale(d.burger) + margin.left })
+                        .attr("y", function (d) { return yScale(d.count); })
+                        .attr("height", function (d) { return height - yScale(d.count); })
+                }
+                reset();
+                // slice.selectAll("rect")
+                //     .style("visibility", "hidden")
+
+                // var hey = slice.selectAll("." + selectedBurger.split(" ")[0] + "." + selectedBurger.split(" ")[1])
+                //     .style("visibility", "visible");
+
+                slice.selectAll("rect")
+                    .filter(function (d, i) {
+                        return !(d.burger == selectedBurger);
+                    })
+                    .transition()
+                    .duration(300)
+                    .attr("height", 0)
+                    .attr("y", height)
+            }
+
+        }
+
     }
 
     drawBurgerSales = function () {
@@ -344,7 +484,7 @@ var drawByDaySales = function () {
             .append("g")
 
         var xg = canvas.append("g")
-            .attr("class", "xAxis day")
+            .attr("class", "xAxis day bs")
             .attr("transform", "translate(" + margin.left + ", " + (margin.top - 1) + ")")
             .call(xAxis)
             .append("text")
@@ -354,7 +494,7 @@ var drawByDaySales = function () {
             .text("Count")
 
         var yg = canvas.append("g")
-            .attr("class", "yAxis day")
+            .attr("class", "yAxis day bs")
             .attr("transform", "translate(" + (margin.left - 1) + ", " + margin.top + ")")
             .call(yAxis)
             .selectAll("text")
@@ -376,13 +516,13 @@ var drawByDaySales = function () {
         updateSpeciesSales = function (data, species, count) {
             xScale.domain([0, Math.ceil(d3.max(count) / 10) * 10])
             xAxis.scale(xScale)
-            d3.selectAll("g.xAxis.day")
+            d3.selectAll("g.xAxis.day.bs")
                 .transition()
                 .duration(500)
                 .call(xAxis);
             yScale.domain(species)
             yAxis.scale(yScale)
-            d3.selectAll("g.yAxis.day")
+            d3.selectAll("g.yAxis.day.bs")
                 .transition()
                 .duration(500)
                 .call(yAxis)
@@ -496,4 +636,5 @@ var drawByDaySales = function () {
     drawSpeciesSales();
     drawBurgerBySpecies();
     drawBurgerSales();
+    drawBurgerBySpeciesBar();
 }
