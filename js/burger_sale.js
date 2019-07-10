@@ -90,6 +90,11 @@ function importBurgerSales() {
             .attr("y", function (d) { return yScale(0); })
             .attr("height", function (d) { return height - yScale(0); })
             
+        /**code to add div for the tooltip
+         * const hoverTooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+         */
         rect.transition()
             .duration(1000)
             .attr("y", function (d) { return yScale(d.count); })
@@ -98,6 +103,20 @@ function importBurgerSales() {
                 rect.on("mouseover", function(actual, i){
                     d3.selectAll("")
                 })
+                /**code of adding tooltips to each of the bars, follows the mouse
+                 *  .on("mouseover", function(blah){
+                        hoverTooltip.style("visibility", "visible").text(actual.count)
+                    }
+
+                    mouseout{
+                        hoverTooltip.style("visibility", "hidden")
+                    }
+
+                    .on("mousemove", function(){
+                        return hoverTooltip.style("top", (event.pageY-10) + "px")
+                                            .style("left", (event.pageX+10) + "px")
+                    })
+                */
             })
         
         
