@@ -195,7 +195,7 @@ a.currentpage {
 }
 
 .calendar_stats, #cal_stats {
-    position: relative;
+    /* position: relative; */
     width: 1150px;
     height: 538px;
     background-color: rgba(255,255,255, 0.4);
@@ -248,7 +248,7 @@ a.currentpage {
 }
 
 #burgerBySpecies_day{
-    width: 60vw;
+    width: 748px;
     height: 230px;
     margin: 5px;
     margin-left: 60px;
@@ -259,13 +259,13 @@ a.currentpage {
 #burgerSales_day {
     background-color: rgb(104, 175, 199);    
     border: 1px solid white;
-    width: 32vw;
+    width: 435px;
     height: 280px;
     margin: 5px;
 }
 
 #speciesSales_day {
-    width: 37vw;
+    width: 445px;
     height: 280px;
     margin: 5px;
     border: 1px solid white;
