@@ -120,7 +120,7 @@ function importHourSales() {
 
         var xAxis = d3.axisBottom()
             .scale(xScale)
-            // .tickSize()
+            .ticks(20)
             .tickFormat(d3.timeFormat("%m/%d|%-I%p"))
 
         var yAxis = d3.axisLeft()
@@ -219,7 +219,8 @@ function importHourSales() {
             .call(d3.axisBottom()
                 .scale(xScale)
                 .tickSize(height, 0, 0)
-                .tickFormat(''))
+                .tickFormat('')
+                .ticks(20))
 
 
         var focus = canvas.append("g")

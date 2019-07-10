@@ -12,8 +12,6 @@ function importBurgerSales() {
         var burgerSales = toJson(jsonString);
         /*---------------------------------------------------------------------------------------*/
 
-        console.log(burgerSales);
-
         var margin = { top: 10, right: 10, bottom: 20, left: 20 },
             width = 430 - margin.right - margin.left,
             height = 205 - margin.top - margin.bottom,
@@ -34,7 +32,7 @@ function importBurgerSales() {
 
         var yScale = d3.scaleLinear()
             .range([height, 0])
-            .domain([0, Math.ceil(d3.max(count)/ 50) * 50])
+            .domain([0, Math.ceil(d3.max(count)/ 100) * 100])
 
         var xAxis = d3.axisBottom()
             .scale(xScale)
@@ -85,7 +83,7 @@ function importBurgerSales() {
                 return yScale(d.burger);
             })
             .attr("width", xScale.bandwidth()-80)
-            .attr("fill", "rgb(255,255,102)")
+            .attr("fill", "")
             .attr("transform", "translate(" + (margin.left+40) + ", 0)")
             .attr("y", function (d) { return yScale(0); })
             .attr("height", function (d) { return height - yScale(0); })
@@ -99,12 +97,5 @@ function importBurgerSales() {
                     d3.selectAll("")
                 })
             })
-        
-        
-        
-            
-
-
-        
     })
 }

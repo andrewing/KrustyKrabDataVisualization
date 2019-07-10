@@ -59,7 +59,7 @@ function importBurgerBySpecies() {
             .domain(burger)
             .range(['violet', '#FFDB58', 'turquoise'])
 
-        var total = 0;
+            var total = 0;
         for (var i = 0; i < burger.length; i++) {
             total += burgerSalesData[burger[i]];
         }
@@ -67,11 +67,11 @@ function importBurgerBySpecies() {
             burgerSalesData[burger[i]] = burgerSalesData[burger[i]] / total * 1;
         }
         burgerSalesData = [burgerSalesData];
-
-
+        
         var stackedData = d3.stack()
-            .keys(burger)
-            (burgerSalesData)
+        .keys(burger)
+        (burgerSalesData)
+        
         canvas.append("g")
             .selectAll("g")
             .data(stackedData)
@@ -213,6 +213,7 @@ function draw() {
             dataJSON.push(singleJSON)
         }
 
+
         for (x in dataJSON) {
             for (y in simplified) {
                 if (simplified[y].species == dataJSON[x].species) {
@@ -250,7 +251,8 @@ function draw() {
         x1Scale.domain(burgerNames)
             .range([0, x0Scale.bandwidth()])
         yScale.domain([0, Math.ceil(d3.max(count) / 50) * 50])
-
+        console.log(species);
+        console.log(burgerNames);
 
 
         canvas.append("g")
