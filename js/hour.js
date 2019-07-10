@@ -40,24 +40,29 @@ function importHourSales() {
         }
 
 
-        var alldates = []; 
+        var alldates = [];
         var ctr = 1;
 
         do {
             var newDate = new Date(d3.min(dateonly));
             newDate.setHours(newDate.getHours() + ctr)
             alldates.push(newDate)
-            console.log(newDate);
             ctr++
         } while (newDate.getDate() != d3.max(dateonly).getDate()
             || newDate.getHours() != d3.max(dateonly).getHours());
 
-        console.log(alldates)
+        
         for (x in alldates) {
-            if (!isInArray(dates, alldates)) {
-                dates.push({ date: alldates, count: 0 })
+            if (!isInArray(dates, alldates[x])) {
+                dates.push({ date: alldates[x], count: 0 })
             }
         }
+
+        dates.sort(function(a,b){
+            return b.date - a.date;
+        })
+
+        console.log(dates);
 
         // console.log(dates);
         // for (x in dates) {
@@ -80,7 +85,6 @@ function importHourSales() {
         // for (x in hours) {
         //     hours[x] = hours[x] + ":00";
         // }
-        // console.log(dates)
         // var dateonly = [];
         // dates.forEach(function (d) {
         //     d.date = parseTime(d.date)
@@ -90,13 +94,13 @@ function importHourSales() {
 
         var parseTime = d3.timeFormat("%B %-d|%-I%:00 %p")
 
-        console.log(d3.min(dates, function (d) {
-            return d.date
-        }))
+        // console.log(d3.min(dates, function (d) {
+        //     return d.date
+        // }))
 
-        console.log(d3.max(dates, function (d) {
-            return d.date;
-        }))
+        // console.log(d3.max(dates, function (d) {
+        //     return d.date;
+        // }))
 
         xScale.domain([d3.min(dates, function (d) {
             return d.date;
@@ -150,7 +154,7 @@ function importHourSales() {
         var area = function (datum, boolean) {
             return d3.area()
                 .y0(height - margin.top)
-                .y1(function (d) { return boolean ? yScale(d.count) : (height - margin.top); })
+                .y1(function (d) { return boolean ? (yScale(d.count)-margin.top) : (height - margin.top); })
                 .x(function (d) { return xScale(d.date); })
                 (datum);
         }
@@ -168,7 +172,7 @@ function importHourSales() {
             .datum(dates)
             .attr("transform", "translate(" + (margin.left + 1) + ", " + margin.top + ")")
             .attr("fill", "#f88379")
-            .on("mouseover", function () {
+            .on("touchmove mouseover", function () {
                 d3.select(this)
                     .transition()
                     .duration(300)
@@ -182,7 +186,7 @@ function importHourSales() {
                     .duration(500)
                     .style("opacity", 1)
 
-                focus.style("display", null);
+                // focus.style("display", null);
             })
             .on("mouseout", function () {
                 d3.select(this)
@@ -198,7 +202,7 @@ function importHourSales() {
                 gridx.transition()
                     .duration(500)
                     .style("opacity", 0)
-                focus.style("display", "none");
+                // focus.style("display", "none");
 
             })
             .on("mousemove", mousemove)
@@ -254,24 +258,25 @@ function importHourSales() {
 
         // .attr("dy", ".31em");
 
-        var bisectDate = d3.bisector(function (d) { return d.date; }).left;
         function mousemove() {
-            var x0 = xScale.invert(d3.mouse(this)[0]),
-                i = bisectDate(dates, x0, 1),
-                d0 = dates[i - 1],
-                d1 = dates[i]
-            d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-            console.log(x0)
-            focus.attr("transform", "translate(" + (xScale(d.date) + margin.left) + "," + (yScale(d.count) + margin.top) + ")");
-            focus.select("text.salesToolTip").text(function () { return "Sold:" + d.count + " burgers" });
-            focus.select("text.datetimeToolTip").text(function () { return parseTime(d.date); });
+            // const bisectDate = d3.bisector(function (d) { return d.date; }).left;
+            
+            
+            // var x0 = xScale.invert(d3.mouse(this)[0]),
+            //     i = bisectDate(dates, x0, 1),
+            //     d0 = dates[i - 1],
+            //     d1 = dates[i]
+            // d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+            // focus.attr("transform", "translate(" + (xScale(d.date) + margin.left) + "," + (yScale(d.count) + margin.top) + ")");
+            // focus.select("text.salesToolTip").text(function () { return "Sold:" + d.count + " burgers" });
+            // focus.select("text.datetimeToolTip").text(function () { return parseTime(d.date); });
 
-            focus.select(".x-hover-line").attr("y2", height - yScale(d.count));
-            focus.select(".y-hover-line").attr("x2", width + width);
+            // focus.select(".x-hover-line").attr("y2", height - yScale(d.count));
+            // focus.select(".y-hover-line").attr("x2", width + width);
         }
     })
 }
 
 function isInArray(array, value) {
-    return array.find(item => { return (item.date.getDate() - value.getDate()) == 0 && (item.date.getHours() - value.getHours()) == 0 });
+    return array.find(item => {return (item.date.getDate() - value.getDate()) == 0 && (item.date.getHours() - value.getHours()) == 0 });
 }
