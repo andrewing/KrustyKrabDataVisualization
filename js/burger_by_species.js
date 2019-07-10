@@ -307,7 +307,7 @@ function draw() {
             .attr("class", "g")
             .attr("transform", function (d) { return "translate(" + x0Scale(d.species) + ",0)"; });
 
-            var tooltip = d3.select("body").append("div")
+        var tooltip = d3.select("body").append("div")
                 .attr("class", "tooltip")
                 .style("visibility", "hidden")
         

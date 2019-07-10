@@ -93,28 +93,30 @@ function importBurgerSales() {
             .append("div")
             .attr("class", "tooltip")
          */
+
+        var tooltip = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("visibility", "hidden")
+        
         rect.transition()
             .duration(1000)
             .attr("y", function (d) { return yScale(d.count); })
             .attr("height", function (d) { return height - yScale(d.count); })
             .on("end", function(){
                 rect.on("mouseover", function(actual, i){
-                    d3.selectAll("")
+                    d3.select(this)
+                        tooltip.transition().duration(500).style("visibility", "visible").text(actual.count);  
+                    
                 })
-                /**code of adding tooltips to each of the bars, follows the mouse
-                 *  .on("mouseover", function(blah){
-                        hoverTooltip.style("visibility", "visible").text(actual.count)
-                    }
 
-                    mouseout{
-                        hoverTooltip.style("visibility", "hidden")
-                    }
+                rect.on("mousemove", function(){
+                    return tooltip.style("top", (d3.event.pageY-10)+ "px").style("left", (d3.event.pageX+10)+ "px");
+                })
 
-                    .on("mousemove", function(){
-                        return hoverTooltip.style("top", (event.pageY-10) + "px")
-                                            .style("left", (event.pageX+10) + "px")
-                    })
-                */
+                rect.on("mouseout", function(){
+                    tooltip.transition().duration(500).style("visibility", "hidden");
+                })
+
             })
     })
 }
