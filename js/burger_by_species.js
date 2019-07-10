@@ -29,8 +29,6 @@ function importBurgerBySpecies() {
             .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
 
-
-
         var xScale = d3.scaleBand()
             .domain(["All"])
             .range([0, width - margin.left - margin.right])
