@@ -19,13 +19,13 @@ function importSpeciesSales() {
             for better data manipulation
         */
         var count = [], species = [];
-        
-        
+
+
         for (x in data) {
             count.push(data[x]);
             species.push(x);
         }
-        
+
 
         var jsonString = multjsonparser(species, count, ["species", "count"]);
         var newData = toJson(jsonString);
@@ -100,13 +100,15 @@ function importSpeciesSales() {
             .attr("height", yScale.bandwidth())
             .attr("fill", "rgb(255,255,102)")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-            
+
         rect.transition()
             .duration(1000)
             .attr("width", function (d) {
                 return xScale(d.count);
             })
+
             .on("end", function () {
+
                 rect.on("mouseover", function (actual, i) {
                     d3.selectAll(".value")
                         .attr("visibility", "hidden")
