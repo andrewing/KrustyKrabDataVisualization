@@ -341,6 +341,11 @@ tr:nth-child(even) {
     color: lightgray;
 }
 
+.xAxis.day, .yAxis.day, .grid.day{
+    color: darkslategray;
+}
+
+
 .legend{
     fill: lightgray;
 }

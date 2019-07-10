@@ -344,7 +344,7 @@ var drawByDaySales = function () {
             .ticks(5)
 
         var grid = canvas.append("g")
-            .attr("class", "grid")
+            .attr("class", "grid day")
             .attr("transform", "translate(" + (margin.left - 5) + ", " + 0 + ")")
             .call(gridAxis)
 
@@ -488,7 +488,7 @@ var drawByDaySales = function () {
             .tickSize(width + margin.right, 0, 0)
             .tickFormat('')
         var grid = canvas.append("g")
-            .attr("class", "grid")
+            .attr("class", "grid day")
             .call(gridAxis)
             .attr("transform", "translate(" + (margin.left - 5) + "," + 0 + ")")
 
@@ -620,7 +620,7 @@ var drawByDaySales = function () {
             .tickSize(height + margin.top + margin.bottom, 0, 0)
             .tickFormat('')
         var grid = canvas.append('g')
-            .attr('class', 'grid')
+            .attr('class', 'grid day')
             .attr("transform", "translate(" + (margin.left) + ", " + (margin.top - 1) + ")")
             .call(gridAxis)
 
