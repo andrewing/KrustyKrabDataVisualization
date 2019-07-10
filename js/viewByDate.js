@@ -12,7 +12,6 @@ function getSelectedData() {
             format = new Date(dateSelected);
             dateSelectedString = format.getFullYear() + "-" + (format.getMonth()+1) + "-" + format.getDate();
             getSalesData(dateSelectedString);
-            // allBurgerSales(dateSelectedString);
         }
     });
 }
@@ -110,6 +109,21 @@ function getSalesData(pickedDate){
         }
         
         console.log(info);
+
+// ----------------------------------------------- Species Sales ------------------------
+        var width = 400, height = 250, barPadding = 5;
+                var barWidth = 40;
+        
+                var canvas = d3.select("#speciesSales_day").append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .attr("class", "speciesSalesDay")
+                    .append("g")
+
+                var xScale = d3.scaleLinear()
+                    .domain([0, Math.ceil(d3.max(count)/100)* 100])
+                    .range([0, width])
+                
         
         burgerDaySales(burgerSales, burgerTypes, burgerCount)
     });

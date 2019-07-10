@@ -19,22 +19,20 @@ function importSpeciesSales() {
             for better data manipulation
         */
         var count = [], species = [];
-
+        
+        
         for (x in data) {
             count.push(data[x]);
             species.push(x);
         }
-
         
 
         var jsonString = multjsonparser(species, count, ["species", "count"]);
         var newData = toJson(jsonString);
         /*---------------------------------------------------------------------------------------*/
-
         var margin = { top: 20, right: 10, bottom: 100, left: 100 },
             width = 430 - margin.right - margin.left,
             height = 230 - margin.top - margin.bottom;
-
 
         var canvas = d3.select("#spcs_sales").append("svg")
             .attr("width", width + margin.right + margin.left)
@@ -55,7 +53,8 @@ function importSpeciesSales() {
             .scale(xScale);
 
         var yAxis = d3.axisLeft()
-            .scale(yScale);
+            .scale(yScale)
+            .tickSize(0);
 
         var xg = canvas.append("g")
             .attr("class", "xAxis")
@@ -77,6 +76,7 @@ function importSpeciesSales() {
             .attr("dy", "-0.55em")
             .attr("y", 10)
             .selectAll(".tick text")
+
         canvas.append('g')
             .attr('class', 'grid')
             .attr("transform", "translate(" + (margin.left) + ", " + (margin.top - 1) + ")")
@@ -98,7 +98,7 @@ function importSpeciesSales() {
                 return yScale(d.species);
             })
             .attr("height", yScale.bandwidth())
-            .attr("fill", "pink")
+            .attr("fill", "rgb(255,255,102)")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             
         rect.transition()
@@ -127,7 +127,7 @@ function importSpeciesSales() {
                         .attr("y1", margin.top + 0)
                         .attr("y2", margin.top + margin.bottom + height)
                         .attr("stroke", "red")
-                        
+
                     var diff = bar.append('text')
                         .attr('class', 'divergence')
                         .attr("y", (a) => margin.top + yScale(a.species) + yScale.bandwidth() - 5)
@@ -183,3 +183,15 @@ function importSpeciesSales() {
             })
     })
 }
+
+
+var insertLinebreaks = function (d) {
+    var el = d3.select(this);
+    var words = d.toString().split(' ');
+    el.text('');
+    for (var i = 0; i < words.length; i++) {
+        var tspan = el.append('tspan').text(words[i]);
+        if (i > 0)
+            tspan.attr('x', 0).attr('dy', '15');
+    }
+};

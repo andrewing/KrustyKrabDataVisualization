@@ -6,9 +6,13 @@
         <script src="libraries/jquery.js"></script>
         <script src="libraries/d3.js"></script>
         <script src="libraries/own.js"></script>
+
+        <script src="js/burger_by_species.js"></script>
         <script src="js/species_sale.js"></script>
         <script src="js/burger_sale.js"></script>
+        <script src="js/hour.js"></script>
         <script src="js/viewByDate.js"></script>
+        
         <link rel=stylesheet href="css/dashboard.css">
         <link rel="stylesheet" href="libraries/jquery-ui.min.css">
 
@@ -114,8 +118,10 @@
         <script src="libraries/jquery-ui.min.js"></script>
         
         <script>
+            importBurgerBySpecies();
             importSpeciesSales();
             importBurgerSales();
+            importHourSales();
             getSelectedData();
         </script>
     
