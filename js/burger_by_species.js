@@ -160,6 +160,7 @@ function draw() {
         .range(['violet', 'turquoise', '#FFDB58', 'rgb(253, 180, 98)']);
 
     var canvas = d3.select('#burgerBySpecies_bar').append("svg")
+        .attr("class", "canvas")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -301,6 +302,10 @@ function draw() {
             .attr("class", "g")
             .attr("transform", function (d) { return "translate(" + x0Scale(d.species) + ",0)"; });
 
+            var tooltip = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("visibility", "hidden")
+        
         var rect = slice.selectAll("rect")
             .data(function (d) { return d.sales; })
             .enter().append("rect")
@@ -315,11 +320,31 @@ function draw() {
             .on("mouseover", function (d) {
                 d3.select(this)
                     .style("opacity", 0.7)
+                
+                tooltip.transition().duration(200).style("opacity", 0.9);
+                tooltip.html("<span>" + d.count + "</span>")
+                        .style("left", "${d3.event.layerX}px")
+                        .style("top", "${(d3.event.layerY - 28)}px")   
+                
+                return tooltip.style("visibility", "visible")
+                             
             })
             .on("mouseout", function () {
                 d3.select(this)
                     .style("opacity", 1);
+                
+                tooltip.transition().duration(500).style("opacity", 0);
+                return tooltip.style("visibility", "hidden")
+            })
+
+            .on("mousemove", function(){
+                return tooltip.style("top", (d3.event.pageY-10)+ "px").style("left", (d3.event.pageX+10)+ "px")
+            })
+
+            .on("mouseclick", function(d){
+
             });
+        
 
         slice.selectAll("rect")
             .transition()
