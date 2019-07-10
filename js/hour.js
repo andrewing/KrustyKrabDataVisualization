@@ -51,18 +51,18 @@ function importHourSales() {
         } while (newDate.getDate() != d3.max(dateonly).getDate()
             || newDate.getHours() != d3.max(dateonly).getHours());
 
-        
+
         for (x in alldates) {
             if (!isInArray(dates, alldates[x])) {
                 dates.push({ date: alldates[x], count: 0 })
             }
         }
 
-        dates.sort(function(a,b){
+        dates.sort(function (a, b) {
             return b.date - a.date;
         })
 
-    
+
         // console.log(dates);
         // for (x in dates) {
         //     if (!hours.includes(dates[x].getHours())) {
@@ -120,7 +120,7 @@ function importHourSales() {
 
         var xAxis = d3.axisBottom()
             .scale(xScale)
-            // .tickSize()
+            .ticks(20)
             .tickFormat(d3.timeFormat("%m/%d|%-I%p"))
 
         var yAxis = d3.axisLeft()
@@ -153,7 +153,7 @@ function importHourSales() {
         var area = function (datum, boolean) {
             return d3.area()
                 .y0(height - margin.top)
-                .y1(function (d) { return boolean ? (yScale(d.count)-margin.top) : (height - margin.top); })
+                .y1(function (d) { return boolean ? (yScale(d.count) - margin.top) : (height - margin.top); })
                 .x(function (d) { return xScale(d.date); })
                 (datum);
         }
@@ -185,7 +185,7 @@ function importHourSales() {
                     .duration(500)
                     .style("opacity", 1)
 
-                // focus.style("display", null);
+                focus.style("display", null);
             })
             .on("mouseout", function () {
                 d3.select(this)
@@ -201,7 +201,7 @@ function importHourSales() {
                 gridx.transition()
                     .duration(500)
                     .style("opacity", 0)
-                // focus.style("display", "none");
+                focus.style("display", "none");
 
             })
             .on("mousemove", mousemove)
@@ -219,21 +219,13 @@ function importHourSales() {
             .call(d3.axisBottom()
                 .scale(xScale)
                 .tickSize(height, 0, 0)
-                .tickFormat(''))
+                .tickFormat('')
+                .ticks(20))
 
 
         var focus = canvas.append("g")
             .attr("class", "focus")
             .style("display", "none")
-
-        focus.append("line")
-            .attr("class", "x-hover-line hover-line")
-            .attr("y1", 0)
-            .attr("y2", height);
-        focus.append("line")
-            .attr("class", "y-hover-line hover-line")
-            .attr("x1", width)
-            .attr("x2", width);
 
         focus.append("circle")
             .attr("r", 5)
@@ -258,24 +250,26 @@ function importHourSales() {
         // .attr("dy", ".31em");
 
         function mousemove() {
-            // const bisectDate = d3.bisector(function (d) { return d.date; }).left;
-            
-            
-            // var x0 = xScale.invert(d3.mouse(this)[0]),
-            //     i = bisectDate(dates, x0, 1),
-            //     d0 = dates[i - 1],
-            //     d1 = dates[i]
-            // d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-            // focus.attr("transform", "translate(" + (xScale(d.date) + margin.left) + "," + (yScale(d.count) + margin.top) + ")");
-            // focus.select("text.salesToolTip").text(function () { return "Sold:" + d.count + " burgers" });
-            // focus.select("text.datetimeToolTip").text(function () { return parseTime(d.date); });
 
-            // focus.select(".x-hover-line").attr("y2", height - yScale(d.count));
-            // focus.select(".y-hover-line").attr("x2", width + width);
+
+            var x0 = xScale.invert(d3.mouse(this)[0])
+            var d0 = new Date(x0), d1 = new Date(x0);
+            d0.setMinutes(0,0,0)
+                
+            d1.setHours(x0.getHours() + 1)
+            d1.setMinutes(0,0,0);
+            var df = x0 - d0 > d1 - x0 ? d1 : d0;
+            var d = dates.filter(obj=>{
+                return (obj.date - df) == 0;
+            })
+            d = d[0];
+            focus.attr("transform", "translate(" + (xScale(d.date) + margin.left) + "," + (yScale(d.count)+2) + ")");
+            focus.select("text.salesToolTip").text(function () { return "Sold:" + d.count + " burgers" });
+            focus.select("text.datetimeToolTip").text(function () { return parseTime(d.date); });
         }
     })
 }
 
 function isInArray(array, value) {
-    return array.find(item => {return (item.date.getDate() - value.getDate()) == 0 && (item.date.getHours() - value.getHours()) == 0 });
+    return array.find(item => { return (item.date.getDate() - value.getDate()) == 0 && (item.date.getHours() - value.getHours()) == 0 });
 }

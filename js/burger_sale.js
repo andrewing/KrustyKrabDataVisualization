@@ -12,8 +12,11 @@ function importBurgerSales() {
         var burgerSales = toJson(jsonString);
         /*---------------------------------------------------------------------------------------*/
 
+<<<<<<< HEAD
         // console.log(burgerSales);
 
+=======
+>>>>>>> 939976c6ac1675914d50aaf4928c0940dc942e19
         var margin = { top: 10, right: 10, bottom: 20, left: 20 },
             width = 430 - margin.right - margin.left,
             height = 205 - margin.top - margin.bottom,
@@ -34,7 +37,7 @@ function importBurgerSales() {
 
         var yScale = d3.scaleLinear()
             .range([height, 0])
-            .domain([0, Math.ceil(d3.max(count)/ 50) * 50])
+            .domain([0, Math.ceil(d3.max(count)/ 100) * 100])
 
         var xAxis = d3.axisBottom()
             .scale(xScale)
@@ -85,11 +88,16 @@ function importBurgerSales() {
                 return yScale(d.burger);
             })
             .attr("width", xScale.bandwidth()-80)
-            .attr("fill", "rgb(255,255,102)")
+            .attr("fill", "")
             .attr("transform", "translate(" + (margin.left+40) + ", 0)")
             .attr("y", function (d) { return yScale(0); })
             .attr("height", function (d) { return height - yScale(0); })
             
+        /**code to add div for the tooltip
+         * const hoverTooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+         */
         rect.transition()
             .duration(1000)
             .attr("y", function (d) { return yScale(d.count); })
@@ -98,7 +106,25 @@ function importBurgerSales() {
                 rect.on("mouseover", function(actual, i){
                     d3.selectAll("")
                 })
+<<<<<<< HEAD
             })
         
+=======
+                /**code of adding tooltips to each of the bars, follows the mouse
+                 *  .on("mouseover", function(blah){
+                        hoverTooltip.style("visibility", "visible").text(actual.count)
+                    }
+
+                    mouseout{
+                        hoverTooltip.style("visibility", "hidden")
+                    }
+
+                    .on("mousemove", function(){
+                        return hoverTooltip.style("top", (event.pageY-10) + "px")
+                                            .style("left", (event.pageX+10) + "px")
+                    })
+                */
+            })
+>>>>>>> 939976c6ac1675914d50aaf4928c0940dc942e19
     })
 }
