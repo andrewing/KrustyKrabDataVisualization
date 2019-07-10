@@ -204,13 +204,17 @@ var drawByDaySales = function () {
             var bar;
             if (first) {
                 console.log(first)
-                
+
             }
-            first=true;
+            first = true;
             bar = canvas.selectAll()
                 .data(data)
                 .enter()
                 .append("g")
+
+            canvas.selectAll("rect").remove()
+            canvas.selectAll(".toolTip.value").remove()
+
             var rect = bar.append("rect")
                 .attr("width", function (d) {
                     return 0;
@@ -284,6 +288,22 @@ var drawByDaySales = function () {
                             canvas.selectAll("#limit").remove()
                             canvas.selectAll(".divergence").remove()
                         })
+                })
+
+            const tooltip = bar.append("text")
+                .attr("class", "toolTip value")
+                .attr("text-anchor", "end")
+                .attr("fill", "#2884cf")
+                .attr("y", (a) => margin.top + yScale(a.species) + yScale.bandwidth() - 5)
+                .attr("x", (a) => margin.left +20)
+                .text((a) => a.count)
+
+
+            tooltip.transition()
+                .duration(1050)
+                .attr("fill", "gray")
+                .attr("transform", function (d) {
+                    return "translate(" + (xScale(d.count) - 25) + "," + 0 + ")";
                 })
 
         }
