@@ -62,8 +62,7 @@ function importHourSales() {
             return b.date - a.date;
         })
 
-        console.log(dates);
-
+    
         // console.log(dates);
         // for (x in dates) {
         //     if (!hours.includes(dates[x].getHours())) {

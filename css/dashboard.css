@@ -259,13 +259,13 @@ a.currentpage {
 #burgerSales_day {
     background-color: rgb(104, 175, 199);    
     border: 1px solid white;
-    width: 435px;
+    width: 400px;
     height: 280px;
     margin: 5px;
 }
 
 #speciesSales_day {
-    width: 445px;
+    width: 416px;
     height: 280px;
     margin: 5px;
     border: 1px solid white;

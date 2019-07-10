@@ -16,6 +16,7 @@ function importBurgerBySpecies() {
 
         draw();
         burgerSalesData = data;
+
         /*********************************************************************/
         var margin = { top: 10, left: 25, right: 50, bottom: 10 },
             width = 200 - margin.left - margin.right,
@@ -65,8 +66,9 @@ function importBurgerBySpecies() {
         for (var i = 0; i < burger.length; i++) {
             burgerSalesData[burger[i]] = burgerSalesData[burger[i]] / total * 1;
         }
-
         burgerSalesData = [burgerSalesData];
+
+
         var stackedData = d3.stack()
             .keys(burger)
             (burgerSalesData)
@@ -218,7 +220,6 @@ function draw() {
                 }
             }
         }
-
         // var burgerNames = [], species = [], count = []
         // var salesJSON = [], burgerNamesJSON = [], dataJSONSing, dataJSON = [];
         // for (x in data) {

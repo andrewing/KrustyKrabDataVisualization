@@ -108,6 +108,6 @@ function getSalesData(pickedDate) {
         }
 
         console.log(info);
-        
-    }
+
+    })
 }
