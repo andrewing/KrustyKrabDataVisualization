@@ -354,3 +354,15 @@ line#limit{
   stroke-width: 3;
   stroke-dasharray: 3 6;
 }
+
+.tooltip {
+    position: absolute;
+    background-color: darkblue;
+    font-family: sponge;
+    color: yellow;
+    height: 20px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    pointer-events: none;
+}
