@@ -184,7 +184,7 @@ var drawByDaySales = function () {
             .range(['violet', '#FFDB58', 'turquoise'])
 
         updateBurgerBySpecies = function (bsData, burger) {
-            canvas.selectAll("rect.day").remove();
+            canvas.selectAll("rect").remove();
             canvas.selectAll(".legendDay").remove();
             var burgerSalesData = bsData;
             color.domain(burger);
@@ -220,7 +220,7 @@ var drawByDaySales = function () {
                 .append("g")
                 .attr("fill", function (d) { return color(d.key) })
                 .on("mouseover", function (d) {
-            
+
                     update2(d.key);
                 })
                 .selectAll("rect")
@@ -351,106 +351,109 @@ var drawByDaySales = function () {
 
         updateBurgerBySpeciesBar = function (data, species, burgerNames, count) {
             canvas.selectAll("rect").remove();
-            x0Scale.domain(species);
-            xAxis.scale(x0Scale)
-            d3.selectAll("g.xAxis.day.bbs")
-                .transition()
-                .duration(500)
-                .call(xAxis);
-            yScale.domain([0, Math.ceil(d3.max(count) / 10) * 10])
-            yAxis.scale(yScale)
-            d3.selectAll("g.yAxis.day.bbs")
-                .transition()
-                .duration(500)
-                .call(yAxis)
-            gridAxis.scale(yScale);
-            grid.transition().duration(500).call(gridAxis);
 
-            x1Scale.domain(burgerNames)
-                .range([0, x0Scale.bandwidth()])
+            if (data != null) {
+                x0Scale.domain(species);
+                xAxis.scale(x0Scale)
+                d3.selectAll("g.xAxis.day.bbs")
+                    .transition()
+                    .duration(500)
+                    .call(xAxis);
+                yScale.domain([0, Math.ceil(d3.max(count) / 10) * 10])
+                yAxis.scale(yScale)
+                d3.selectAll("g.yAxis.day.bbs")
+                    .transition()
+                    .duration(500)
+                    .call(yAxis)
+                gridAxis.scale(yScale);
+                grid.transition().duration(500).call(gridAxis);
 
-            var slice = canvas.selectAll(".slice")
-                .data(data)
-                .enter().append("g")
-                .attr("transform", function (d) { return "translate(" + x0Scale(d.species) + ",0)"; });
-            
+                x1Scale.domain(burgerNames)
+                    .range([0, x0Scale.bandwidth()])
+
+                var slice = canvas.selectAll(".slice")
+                    .data(data)
+                    .enter().append("g")
+                    .attr("transform", function (d) { return "translate(" + x0Scale(d.species) + ",0)"; });
+
                 var tooltip = d3.select("body").append("div")
-                .attr("class", "tooltip")
-                .style("visibility", "hidden")
+                    .attr("class", "tooltip")
+                    .style("visibility", "hidden")
 
-            var rect = slice.selectAll("rect")
-                .data(function (d) { return d.sales; })
-                .enter().append("rect")
-                .attr("width", x1Scale.bandwidth())
-                .attr("x", function (d) { ; return x1Scale(d.burger) + margin.left })
-                .style("fill", function (d) { return color(d.burger) })
-                .attr("class", function (d) {
-                    return d.burger + " day";
-                })
-                .attr("y", function (d) { return yScale(0); })
-                .attr("height", function (d) { return height - yScale(0); })
-                .on("mouseover", function (d) {
-                    d3.select(this)
-                        .style("opacity", 0.7)
+                var rect = slice.selectAll("rect")
+                    .data(function (d) { return d.sales; })
+                    .enter().append("rect")
+                    .attr("width", x1Scale.bandwidth())
+                    .attr("x", function (d) { ; return x1Scale(d.burger) + margin.left })
+                    .style("fill", function (d) { return color(d.burger) })
+                    .attr("class", function (d) {
+                        return d.burger + " day";
+                    })
+                    .attr("y", function (d) { return yScale(0); })
+                    .attr("height", function (d) { return height - yScale(0); })
+                    .on("mouseover", function (d) {
+                        d3.select(this)
+                            .style("opacity", 0.7)
 
-                    tooltip.transition().duration(200).style("opacity", 0.9);
-                    tooltip.html("<span>" + d.count + "</span>")
-                        .style("left", "${d3.event.layerX}px")
-                        .style("top", "${(d3.event.layerY - 28)}px")
+                        tooltip.transition().duration(200).style("opacity", 0.9);
+                        tooltip.html("<span>" + d.count + "</span>")
+                            .style("left", "${d3.event.layerX}px")
+                            .style("top", "${(d3.event.layerY - 28)}px")
 
-                    return tooltip.style("visibility", "visible")
+                        return tooltip.style("visibility", "visible")
 
-                })
-                .on("mouseout", function () {
-                    d3.select(this)
-                        .style("opacity", 1);
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this)
+                            .style("opacity", 1);
 
-                    tooltip.transition().duration(500).style("opacity", 0);
-                    return tooltip.style("visibility", "hidden")
-                })
+                        tooltip.transition().duration(500).style("opacity", 0);
+                        return tooltip.style("visibility", "hidden")
+                    })
 
-                .on("mousemove", function () {
-                    return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px")
-                })
+                    .on("mousemove", function () {
+                        return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px")
+                    })
 
-                .on("mouseclick", function (d) {
+                    .on("mouseclick", function (d) {
 
-                });
+                    });
 
-
-            slice.selectAll("rect")
-                .transition()
-                .duration(1000)
-                .attr("y", function (d) { return yScale(d.count); })
-                .attr("height", function (d) { return height - yScale(d.count); });
-
-            update2 = function (selectedBurger) {
-
-
-                reset2 = function () {
-                    slice.selectAll("rect")
-                        .transition()
-                        .duration(300)
-                        .attr("width", x1Scale.bandwidth())
-                        .attr("x", function (d) { return x1Scale(d.burger) + margin.left })
-                        .attr("y", function (d) { return yScale(d.count); })
-                        .attr("height", function (d) { return height - yScale(d.count); })
-                }
-                reset2();
-                // slice.selectAll("rect")
-                //     .style("visibility", "hidden")
-
-                // var hey = slice.selectAll("." + selectedBurger.split(" ")[0] + "." + selectedBurger.split(" ")[1])
-                //     .style("visibility", "visible");
 
                 slice.selectAll("rect")
-                    .filter(function (d, i) {
-                        return !(d.burger == selectedBurger);
-                    })
                     .transition()
-                    .duration(300)
-                    .attr("height", 0)
-                    .attr("y", height)
+                    .duration(1000)
+                    .attr("y", function (d) { return yScale(d.count); })
+                    .attr("height", function (d) { return height - yScale(d.count); });
+
+                update2 = function (selectedBurger) {
+
+
+                    reset2 = function () {
+                        slice.selectAll("rect")
+                            .transition()
+                            .duration(300)
+                            .attr("width", x1Scale.bandwidth())
+                            .attr("x", function (d) { return x1Scale(d.burger) + margin.left })
+                            .attr("y", function (d) { return yScale(d.count); })
+                            .attr("height", function (d) { return height - yScale(d.count); })
+                    }
+                    reset2();
+                    // slice.selectAll("rect")
+                    //     .style("visibility", "hidden")
+
+                    // var hey = slice.selectAll("." + selectedBurger.split(" ")[0] + "." + selectedBurger.split(" ")[1])
+                    //     .style("visibility", "visible");
+
+                    slice.selectAll("rect")
+                        .filter(function (d, i) {
+                            return !(d.burger == selectedBurger);
+                        })
+                        .transition()
+                        .duration(300)
+                        .attr("height", 0)
+                        .attr("y", height)
+                }
             }
 
         }
@@ -459,14 +462,14 @@ var drawByDaySales = function () {
 
     drawBurgerSales = function () {
         var margin = { top: 20, bottom: 20, right: 20, left: 20 },
-        height = 250 - margin.top - margin.bottom,
-        width = 400 - margin.left - margin.right;
+            height = 250 - margin.top - margin.bottom,
+            width = 400 - margin.left - margin.right;
         var canvas = d3.select("#burgerSales_day").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
         var xScale = d3.scaleBand()
             .range([0, width])
             .round([0, 1])
@@ -504,68 +507,71 @@ var drawByDaySales = function () {
             .call(yAxis)
         updateBurgerSales = function (data, burger, count) {
             canvas.selectAll("rect").remove()
-            xScale.domain(burger)
-            xAxis.scale(xScale)
-            d3.selectAll("g.xAxis.day.bs")
-                .transition()
-                .duration(500)
-                .call(xAxis)
-            yScale.domain([0, Math.ceil(d3.max(count) / 20) * 20])
-            yAxis.scale(yScale)
-            d3.selectAll("g.yAxis.day.bs")
-                .transition()
-                .duration(500)
-                .call(yAxis);
 
-            gridAxis.scale(yScale);
-            grid.transition().duration(500).call(gridAxis);
-            const bar = canvas.selectAll()
-                .data(data)
-                .enter()
-                .append("g")
-                .attr("transform", function (d) {
-                    return "translate(" + xScale(d.burger) + ",0)";
-                })
+            if (data != null) {
+                xScale.domain(burger)
+                xAxis.scale(xScale)
+                d3.selectAll("g.xAxis.day.bs")
+                    .transition()
+                    .duration(500)
+                    .call(xAxis)
+                yScale.domain([0, Math.ceil(d3.max(count) / 20) * 20])
+                yAxis.scale(yScale)
+                d3.selectAll("g.yAxis.day.bs")
+                    .transition()
+                    .duration(500)
+                    .call(yAxis);
 
-            const rect = bar.append("rect")
-                .attr("width", function (d) {
-                    return 0;
-                })
-                .attr("x", function (d) {
-                    return yScale(d.burger);
-                })
-                .attr("width", xScale.bandwidth() - 80)
-                .attr("fill", "orange")
-                .attr("transform", "translate(" + (margin.left + 40) + ", 0)")
-                .attr("y", function (d) { return yScale(0); })
-                .attr("height", function (d) { return height - yScale(0); })
-
-
-            var tooltip = d3.select("body").append("div")
-                .attr("class", "tooltip")
-                .style("visibility", "hidden")
-
-            rect.transition()
-                .duration(1000)
-                .attr("y", function (d) { return yScale(d.count); })
-                .attr("height", function (d) { return height - yScale(d.count); })
-                .on("end", function () {
-                    rect.on("mouseover", function (actual, i) {
-                        d3.select(this)
-                        tooltip.transition().duration(500).style("visibility", "visible").text(actual.count);
-
-
+                gridAxis.scale(yScale);
+                grid.transition().duration(500).call(gridAxis);
+                const bar = canvas.selectAll()
+                    .data(data)
+                    .enter()
+                    .append("g")
+                    .attr("transform", function (d) {
+                        return "translate(" + xScale(d.burger) + ",0)";
                     })
 
-                    rect.on("mousemove", function () {
-                        return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+                const rect = bar.append("rect")
+                    .attr("width", function (d) {
+                        return 0;
                     })
-
-                    rect.on("mouseout", function () {
-                        tooltip.transition().duration(500).style("visibility", "hidden");
+                    .attr("x", function (d) {
+                        return yScale(d.burger);
                     })
+                    .attr("width", xScale.bandwidth() - 80)
+                    .attr("fill", "orange")
+                    .attr("transform", "translate(" + (margin.left + 40) + ", 0)")
+                    .attr("y", function (d) { return yScale(0); })
+                    .attr("height", function (d) { return height - yScale(0); })
 
-                })
+
+                var tooltip = d3.select("body").append("div")
+                    .attr("class", "tooltip")
+                    .style("visibility", "hidden")
+
+                rect.transition()
+                    .duration(1000)
+                    .attr("y", function (d) { return yScale(d.count); })
+                    .attr("height", function (d) { return height - yScale(d.count); })
+                    .on("end", function () {
+                        rect.on("mouseover", function (actual, i) {
+                            d3.select(this)
+                            tooltip.transition().duration(500).style("visibility", "visible").text(actual.count);
+
+
+                        })
+
+                        rect.on("mousemove", function () {
+                            return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+                        })
+
+                        rect.on("mouseout", function () {
+                            tooltip.transition().duration(500).style("visibility", "hidden");
+                        })
+
+                    })
+            }
         }
     }
 
