@@ -150,6 +150,10 @@ function getSalesData(pickedDate) {
         updateBurgerBySpecies(burgerSales, burgerTypes);
         updateBurgerBySpeciesBar(burgerBySpecies, speciesTypes, burgerTypes, count);
 
+        if (speciesSales == null) {
+            alert("No data on this day!");
+
+        }
 
     })
 
@@ -315,14 +319,15 @@ var drawByDaySales = function () {
 
         var yAxis = d3.axisLeft()
             .scale(yScale)
-            .ticks(5);
+            .ticks(5)
+
         var color = d3.scaleOrdinal()
-            .range(['violet', '#FFDB58', 'turquoise',  'rgb(253, 180, 98)']);
+            .range(['violet', '#FFDB58', 'turquoise', 'rgb(253, 180, 98)']);
 
         canvas.append("g")
             .attr("class", "xAxis day bbs")
             .attr("transform", "translate(" + margin.left + "," + height + ")")
-            .call(xAxis);
+            .call(xAxis)
 
         canvas.append("g")
             .attr("class", "yAxis day bbs")
@@ -335,7 +340,7 @@ var drawByDaySales = function () {
             .attr("dy", ".71em")
             .style("text-anchor", "end")
             .style('font-weight', 'bold')
-            .text("Count");
+            .text("Count")
 
         var gridAxis = d3.axisRight()
             .scale(yScale)
@@ -349,22 +354,27 @@ var drawByDaySales = function () {
             .call(gridAxis)
 
 
+        canvas.selectAll("*").attr("opacity", 0);
         updateBurgerBySpeciesBar = function (data, species, burgerNames, count) {
             canvas.selectAll("rect").remove();
-
+           
             if (data != null) {
+                canvas.selectAll("*").attr("opacity", 1);
+
                 x0Scale.domain(species);
                 xAxis.scale(x0Scale)
                 d3.selectAll("g.xAxis.day.bbs")
                     .transition()
                     .duration(500)
-                    .call(xAxis);
+                    .call(xAxis)
+
                 yScale.domain([0, Math.ceil(d3.max(count) / 10) * 10])
                 yAxis.scale(yScale)
                 d3.selectAll("g.yAxis.day.bbs")
                     .transition()
                     .duration(500)
                     .call(yAxis)
+
                 gridAxis.scale(yScale);
                 grid.transition().duration(500).call(gridAxis);
 
@@ -375,6 +385,7 @@ var drawByDaySales = function () {
                     .data(data)
                     .enter().append("g")
                     .attr("transform", function (d) { return "translate(" + x0Scale(d.species) + ",0)"; });
+
 
                 var tooltip = d3.select("body").append("div")
                     .attr("class", "tooltip")
@@ -455,8 +466,8 @@ var drawByDaySales = function () {
                         .attr("y", height)
                 }
             }
-
         }
+
 
     }
 
@@ -505,10 +516,15 @@ var drawByDaySales = function () {
             .style('opacity', '1')
             .attr("transform", "translate(" + (margin.left - 5) + ", " + 0 + ")")
             .call(yAxis)
+            canvas.selectAll("*").attr("opacity", 0);
+
         updateBurgerSales = function (data, burger, count) {
             canvas.selectAll("rect").remove()
 
+
             if (data != null) {
+                canvas.selectAll("*").attr("opacity", 1);
+
                 xScale.domain(burger)
                 xAxis.scale(xScale)
                 d3.selectAll("g.xAxis.day.bs")
@@ -632,8 +648,11 @@ var drawByDaySales = function () {
             .attr('class', 'grid day')
             .attr("transform", "translate(" + (margin.left) + ", " + (margin.top - 1) + ")")
             .call(gridAxis)
+            canvas.selectAll("*").attr("opacity", 0);
 
         updateSpeciesSales = function (data, species, count) {
+            canvas.selectAll("*").attr("opacity", 1);
+
             xScale.domain([0, Math.ceil(d3.max(count) / 10) * 10])
             xAxis.scale(xScale)
             d3.selectAll("g.xAxis.day.ss")
