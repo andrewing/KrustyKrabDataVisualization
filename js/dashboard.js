@@ -3,10 +3,11 @@ $(document).ready(function(){
     // transfers the json file to html table 
     $.getJSON("http://localhost:3000/sales", function(data){
         let krusty_data = '';
-
+        var parseTime = d3.timeFormat("%B %-d, %Y %-I:%M %p")
         $.each(data, function(index,value){
+            var val = new Date(value.datetime);
             krusty_data += '<tr>';
-            krusty_data += '<td>'+ value.datetime +'</td>';
+            krusty_data += '<td>'+ parseTime(val) +'</td>';
             krusty_data += '<td>'+ value.burger +'</td>';
             krusty_data += '<td>'+ value.species +'</td>';
             krusty_data += '</tr>';
