@@ -304,7 +304,7 @@ a.currentpage {
 /* --------------------------------------------------- */
 
 .data_table {
-    font-family: sponge;
+    /* font-family: ; */
     font-size: 12px;
     width: 100%;
     color: white;
@@ -321,10 +321,11 @@ a.currentpage {
 th {
     color: white;
     background-color: darkblue;
+    font-family: sponge;
+    border: 1px solid white;
 }
 
 td,th {
-    font-family: sponge;
     font-size: 12pt;
     border-collapse: collapse;
     border: solid 2px;
