@@ -15,6 +15,10 @@ body {
 
 }
 
+h1 #menu_name {
+    color: white;
+}
+
 .menu-bar, #menu-barID {
   position: fixed;
   left: -205px;
@@ -221,7 +225,7 @@ a.currentpage {
     height:250px;
 }
 
-.ui-datepicker {
+.ui-datepicker-calendar {
     font-size: 10pt;
 }
 
@@ -318,6 +322,19 @@ a.currentpage {
     z-index: 999;
 }
 
+td,th {
+    font-size: 12pt;
+    border-collapse: collapse;
+    border: solid 2px;
+    border-color: white;
+    padding: 8px;
+    font-family: sponge;
+}
+
+.data_table td {
+    font-family: sans-serif;
+}
+
 th {
     color: white;
     background-color: darkblue;
@@ -325,13 +342,6 @@ th {
     border: 1px solid white;
 }
 
-td,th {
-    font-size: 12pt;
-    border-collapse: collapse;
-    border: solid 2px;
-    border-color: white;
-    padding: 8px;
-}
 
 tr:nth-child(even) {
     background-color: rgb(103, 194, 224);
