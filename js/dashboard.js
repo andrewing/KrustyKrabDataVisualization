@@ -15,7 +15,7 @@ $(document).ready(function(){
 
         $("#tblbody").append(krusty_data);
     });
-
+    
     // scroll animation
     $(document).on('click', 'a[href^="#"]', function (event) {
         event.preventDefault();
