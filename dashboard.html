@@ -1,131 +1,144 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Krusty Krab</title>
-        <link rel= "shortcut icon" type="image/png" href="resources/logo.png">
-        <script src="libraries/jquery.js"></script>
-        <script src="libraries/d3.js"></script>
-        <script src="libraries/own.js"></script>
 
-        <script src="js/burger_by_species.js"></script>
-        <script src="js/species_sale.js"></script>
-        <script src="js/burger_sale.js"></script>
-        <script src="js/hour.js"></script>
-        <script src="js/viewByDate.js"></script>
-        
-        <link rel=stylesheet href="css/dashboard.css">
-        <link rel="stylesheet" href="libraries/jquery-ui.min.css">
+<head>
+    <script>
+        if (un != "admin" || pw != "p@ssword") {
+            window.open("index.html", "_self");
+            alert("Log In First!")
+        }    
+    </script>
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+    <title>Krusty Krab</title>
+    <link rel="shortcut icon" type="image/png" href="resources/logo.png">
+    <script src="libraries/jquery.js"></script>
+    <script src="libraries/d3.js"></script>
+    <script src="libraries/own.js"></script>
 
-    </head>
-        
-    <body>
-        <nav class="menu-bar" id="menu-barID">
-            <button type="button" class="menu-btn">
-                <span class="menu-icon" id="menu-iconID"></span>
-            </button>
-            
-            <h1>Krusty Stats</h1>
-            <ul class="menu-list">
-     
-                <li class="menu-item"><a href="#home">Home</a></li>
-                <li class="menu-item"><a href="#viewbyCalendar">View By Calendar</a></li>
-                <li class="menu-item"><a href="#viewAll">View All Data</a></li>
-                <li class="menu-item"><a href="index.html">Log Out</a></li>
-            </ul>
-        </nav>
+    <script src="js/burger_by_species.js"></script>
+    <script src="js/species_sale.js"></script>
+    <script src="js/burger_sale.js"></script>
+    <script src="js/hour.js"></script>
+    <script src="js/viewByDate.js"></script>
+
+    <link rel=stylesheet href="css/dashboard.css">
+    <link rel="stylesheet" href="libraries/jquery-ui.min.css">
+
+</head>
+
+<body>
+    <nav class="menu-bar" id="menu-barID">
+        <button type="button" class="menu-btn">
+            <span class="menu-icon" id="menu-iconID"></span>
+        </button>
+
+        <h1>Krusty Stats</h1>
+        <ul class="menu-list">
+
+            <li class="menu-item"><a href="#home">Home</a></li>
+            <li class="menu-item"><a href="#viewbyCalendar">View By Calendar</a></li>
+            <li class="menu-item"><a href="#viewAll">View All Data</a></li>
+            <li class="menu-item"><a href="index.html">Log Out</a></li>
+        </ul>
+    </nav>
 
 
-        <!-- HOME PAGE -->
-        <div class="webpage" id="home">
-            <div class= "headerContainer">
-                    <span>Home</span>
-            </div>  
-            <div class="home_stats" id="home_stats">
+    <!-- HOME PAGE -->
+    <div class="webpage" id="home">
+        <div class="headerContainer">
+            <span>Home</span>
+        </div>
+        <div class="home_stats" id="home_stats">
 
-                <div class="sales_divs" id="bgrBySpcs_sales">
-                    <h1 class="sales_header">Burger By Species Sales</h1>
-                    <div id="burgerBySpecies_bar"></div>
-                    <div id="burgerBySpecies_percent"></div>
+            <div class="sales_divs" id="bgrBySpcs_sales">
+                <h1 class="sales_header">Burger By Species Sales</h1>
+                <div id="burgerBySpecies_bar"></div>
+                <div id="burgerBySpecies_percent"></div>
+            </div>
+
+            <div class="sales_divs" id="bgr_sales">
+                <h1 class="sales_header">Burger Sales</h1>
+            </div>
+
+            <div class="sales_divs" id="spcs_sales">
+                <h1 class="sales_header">Species Sales</h1>
+            </div>
+
+            <div class="sales_divs" id="dayHour_sales">
+                <h1 class="sales_header">Day/Hour Sales</h1>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- VIEW BY CALENDAR -->
+    <div class="webpage" id="viewbyCalendar">
+        <div class="headerContainer">
+            <span>View By Calendar</span>
+        </div>
+        <div class="calendar_stats" id="cal_stats">
+            <div class="calendar_ctnr"></div>
+            <div class="selectedDate_dataDivs">
+                <div id="burgerBySpecies_day">
+                    <h1 class="sales_header">Burger By Species</h1>
                 </div>
 
-                <div class="sales_divs" id="bgr_sales">
+                <div id="burgerSales_day">
                     <h1 class="sales_header">Burger Sales</h1>
+
                 </div>
 
-                <div class="sales_divs" id="spcs_sales">
-                        <h1 class="sales_header">Species Sales</h1>
-                </div>
-
-                <div class="sales_divs" id="dayHour_sales">
-                    <h1 class="sales_header">Day/Hour Sales</h1>
+                <div id="speciesSales_day">
+                    <h1 class="sales_header">Species Sales</h1>
                 </div>
 
             </div>
 
         </div>
+    </div>
 
-
-        <!-- VIEW BY CALENDAR -->
-        <div class="webpage" id="viewbyCalendar">
-            <div class= "headerContainer">
-                    <span>View By Calendar</span>
-            </div>  
-            <div class="calendar_stats" id="cal_stats">
-                <div class="calendar_ctnr"></div>
-                <div class="selectedDate_dataDivs">
-                    <div id="burgerBySpecies_day">
-                        <h1 class="sales_header">Burger By Species</h1>
-                    </div>
-                    
-                    <div id="burgerSales_day">
-                        <h1 class="sales_header">Burger Sales</h1>
-
-                    </div>
-                    
-                    <div id="speciesSales_day">
-                        <h1 class="sales_header">Species Sales</h1>
-                    </div>
-
-                </div>
-
-            </div>
+    <!-- VIEW ALL DATA -->
+    <div class="webpage" id="viewAll">
+        <div class="headerContainer">
+            <span>All Data</span>
         </div>
 
-        <!-- VIEW ALL DATA -->
-        <div class="webpage" id="viewAll" >
-            <div class= "headerContainer">
-                <span>All Data</span>
-            </div>    
-        
-            <div class="scrolldiv" id="scrolldivID">
-                <table class = "data_table" id="data_tableID">
-                    <thead>
-                        <tr>
-                            <th>Date and Time</th>
-                            <th>Burger</th>
-                            <th>Species</th>
-                        </tr>
-                    </thead>
-    
-                    <tbody id="tblbody">
-                    </tbody>
-                </table>
-            </div>
+        <div class="scrolldiv" id="scrolldivID">
+            <table class="data_table" id="data_tableID">
+                <thead>
+                    <tr>
+                        <th>Date and Time</th>
+                        <th>Burger</th>
+                        <th>Species</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tblbody">
+                </tbody>
+            </table>
         </div>
+    </div>
 
 
-        <script src="js/dashboard.js"></script>
-        <script src="libraries/jquery-ui.min.js"></script>
-        
-        <script>
-            importBurgerBySpecies();
-            importSpeciesSales();
-            importBurgerSales();
-            importHourSales();
-            getSelectedData();
-            drawByDaySales();
-            
-        </script>
-    
-    </body>
+    <script src="js/dashboard.js"></script>
+    <script src="libraries/jquery-ui.min.js"></script>
+
+    <script>
+        importBurgerBySpecies();
+        importSpeciesSales();
+        importBurgerSales();
+        importHourSales();
+        getSelectedData();
+        drawByDaySales();
+
+    </script>
+
+</body>
+
 </html>
