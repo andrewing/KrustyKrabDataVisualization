@@ -7,7 +7,7 @@
 body {
     justify-content: center;
     align-items: center;
-    background: url(../resources/loginbg.jpg);
+    background-color:#2884cf;
 }
 
 .logIn {
