@@ -357,8 +357,9 @@ var drawByDaySales = function () {
         canvas.selectAll("*").attr("opacity", 0);
         updateBurgerBySpeciesBar = function (data, species, burgerNames, count) {
             canvas.selectAll("rect").remove();
-
+           
             if (data != null) {
+                canvas.selectAll("*").attr("opacity", 1);
 
                 x0Scale.domain(species);
                 xAxis.scale(x0Scale)
@@ -515,13 +516,15 @@ var drawByDaySales = function () {
             .style('opacity', '1')
             .attr("transform", "translate(" + (margin.left - 5) + ", " + 0 + ")")
             .call(yAxis)
-
-        canvas.selectAll("*").attr("opacity", 0);
+            canvas.selectAll("*").attr("opacity", 0);
 
         updateBurgerSales = function (data, burger, count) {
             canvas.selectAll("rect").remove()
 
+
             if (data != null) {
+                canvas.selectAll("*").attr("opacity", 1);
+
                 xScale.domain(burger)
                 xAxis.scale(xScale)
                 d3.selectAll("g.xAxis.day.bs")
@@ -645,11 +648,11 @@ var drawByDaySales = function () {
             .attr('class', 'grid day')
             .attr("transform", "translate(" + (margin.left) + ", " + (margin.top - 1) + ")")
             .call(gridAxis)
-
-
-        canvas.selectAll("*").attr("opacity", 0);
+            canvas.selectAll("*").attr("opacity", 0);
 
         updateSpeciesSales = function (data, species, count) {
+            canvas.selectAll("*").attr("opacity", 1);
+
             xScale.domain([0, Math.ceil(d3.max(count) / 10) * 10])
             xAxis.scale(xScale)
             d3.selectAll("g.xAxis.day.ss")
