@@ -168,21 +168,7 @@ function importSpeciesSales() {
             })
 
 
-        const tooltip = bar.append("text")
-            .attr("class", "value")
-            .attr("text-anchor", "end")
-            .attr("fill", "#2884cf")
-            .attr("y", (a) => margin.top + yScale(a.species) + yScale.bandwidth() - 5)
-            .attr("x", (a) => margin.left + 22)
-            .text((a) => a.count)
-
-
-        tooltip.transition()
-            .duration(1050)
-            .attr("fill", "gray")
-            .attr("transform", function (d) {
-                return "translate(" + (xScale(d.count) - 25) + "," + 0 + ")";
-            })
+         
     })
 }
 
