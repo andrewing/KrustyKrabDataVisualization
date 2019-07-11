@@ -317,7 +317,7 @@ var drawByDaySales = function () {
             .scale(yScale)
             .ticks(5);
         var color = d3.scaleOrdinal()
-            .range(['violet', 'turquoise', '#FFDB58', 'rgb(253, 180, 98)']);
+            .range(['violet', '#FFDB58', 'turquoise',  'rgb(253, 180, 98)']);
 
         canvas.append("g")
             .attr("class", "xAxis day bbs")
