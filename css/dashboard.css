@@ -205,6 +205,8 @@ a.currentpage {
     
     display: flex;
     flex-shrink: 1;
+
+    
 }
 
 #cal_stats.active {

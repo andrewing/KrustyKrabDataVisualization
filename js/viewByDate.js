@@ -557,6 +557,7 @@ var drawByDaySales = function () {
                     .on("end", function () {
                         rect.on("mouseover", function (actual, i) {
                             d3.select(this)
+                                .style("opacity", 0.5)
                             tooltip.transition().duration(500).style("visibility", "visible").text(actual.count);
 
 
@@ -567,6 +568,8 @@ var drawByDaySales = function () {
                         })
 
                         rect.on("mouseout", function () {
+                            d3.select(this)
+                                .style("opacity", 1)
                             tooltip.transition().duration(500).style("visibility", "hidden");
                         })
 
