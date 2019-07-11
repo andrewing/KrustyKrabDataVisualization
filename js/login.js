@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     $("#logInButton").click(logIn);
     $(document).keypress(function(event){
@@ -8,12 +9,15 @@ $(document).ready(function(){
 })
 
 var logIn = function(){
-    if($("#username").val() == 'admin' && $("#password").val() == 'p@ssword'){
+    var un = $("#username").val();
+    var pw = $("#password").val();
+    if(un == 'admin' && pw == 'p@ssword'){
         window.open("dashboard.html", "_self");
     }else{
         wrongPassword();
         retryPassword();    
     }
+
 }
 
 var wrongPassword = function(){
@@ -24,10 +28,12 @@ var wrongPassword = function(){
 
 var retryPassword = function(){
     $("#username").click(function(){
-        $("#username").css('border-bottom-color', 'darkblue');
+        $("#username").css('border-bottom-color', 'white');
+        $("#password").css('border-bottom-color', 'white');
     })
     $("#password").click(function(){
-        $("#password").css('border-bottom-color', 'darkblue');
+        $("#username").css('border-bottom-color', 'white');
+        $("#password").css('border-bottom-color', 'white');
     })
 }
 
