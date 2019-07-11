@@ -226,7 +226,6 @@ function draw() {
             }
         }
 
-       console.log(dataJSON);
         // var burgerNames = [], species = [], count = []
         // var salesJSON = [], burgerNamesJSON = [], dataJSONSing, dataJSON = [];
         // for (x in data) {
@@ -360,7 +359,6 @@ function draw() {
 
         update = function (selectedBurger) {
 
-            console.log(selectedBurger)
             reset = function () {
                 slice.selectAll("rect")
                     .transition()
